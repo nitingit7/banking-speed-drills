@@ -101,7 +101,7 @@
     }
     const q=data.review[index],reAnswer=practice?tries.get(index):null;
     const origSelected=q.selected===null||q.selected===undefined||q.selected===''?null:Number(q.selected);
-    const qData={question:q.question_text||'',options:q.options||[],correct:Number(q.correct_index),marks:1,negative:.25,explanation:q.answer_note||''};
+    const qData={question:q.question_text||'',options:q.options||[],correct:Number(q.correct_index),marks:1,negative:.25,explanation:''};
     const qState={selectedOption:practice?null:origSelected,status:practice?'not-answered':(origSelected?'answered':'not-answered'),timeSpent:0};
     window.SHOW_QUESTION_NO_LABEL=true;
     try{
@@ -115,9 +115,64 @@
     }catch(err){message('Unable to display this question: '+err.message);return;}
     const host=$('quesAnsContent');
     if(host){
+      // Source ID is intentionally revealed only in completed-attempt Analyse.
+      // Do not derive it from the current number or expose it during an exam.
+      const sourceRef=typeof q.source_ref==='string'?q.source_ref.trim():'';
+      const sourceBox=create('div','analyse-source-id');
+      const reveal=create('button','analyse-source-id-show','Show Question ID');
+      reveal.type='button';
+      reveal.setAttribute('aria-controls','analyse-source-id-details');
+      reveal.setAttribute('aria-expanded','false');
+      reveal.setAttribute('aria-label','Show source ID for question '+(index+1));
+      const details=create('div','analyse-source-id-details');
+      details.id='analyse-source-id-details';
+      details.hidden=true;
+      const sourceLabel=create('span','analyse-source-id-label','Question ID:');
+      const sourceValue=create('span','analyse-source-id-value',sourceRef||'Not available for this question');
+      const copy=create('button','analyse-source-id-copy','Copy ID');
+      copy.type='button';
+      copy.disabled=!sourceRef;
+      copy.setAttribute('aria-label','Copy source ID for question '+(index+1));
+      const feedback=create('span','analyse-source-id-feedback');
+      feedback.setAttribute('role','status');
+      feedback.setAttribute('aria-live','polite');
+      reveal.addEventListener('click',()=>{
+        details.hidden=!details.hidden;
+        reveal.setAttribute('aria-expanded',String(!details.hidden));
+        reveal.textContent=details.hidden?'Show Question ID':'Hide Question ID';
+      });
+      copy.addEventListener('click',async()=>{
+        if(!sourceRef)return;
+        let copied=false;
+        try{
+          if(navigator.clipboard?.writeText){
+            await navigator.clipboard.writeText(sourceRef);
+            copied=true;
+          }
+        }catch(_err){/* Try the legacy copy method below. */}
+        if(!copied){
+          // Compatibility fallback for browsers that do not grant Clipboard API.
+          const field=create('textarea');
+          field.value=sourceRef;
+          field.readOnly=true;
+          field.style.cssText='position:fixed;left:-9999px;top:0;opacity:0;';
+          document.body.append(field);
+          field.focus();field.select();
+          try{copied=!!document.execCommand('copy');}catch(_err){copied=false;}
+          field.remove();
+        }
+        feedback.textContent=copied?'Copied!':'Clipboard unavailable. Please copy the displayed ID manually.';
+      });
+      details.append(sourceLabel,sourceValue,copy,feedback);
+      sourceBox.append(reveal,details);
+      host.insertBefore(sourceBox,host.firstChild);
       const qi=create('div');addImg(q.question_image_data,'Question image',qi);
-      if(qi.childElementCount)host.insertBefore(qi,host.firstChild);
+      if(qi.childElementCount)host.insertBefore(qi,host.children[1]||null);
       if(!practice||reAnswer){
+        if(String(q.answer_note||'').trim()){
+          const box=create('div','solution-box');box.append(create('div','solution-title','Solution from source PDF'));
+          box.append(create('div','solution-content source-solution-text',q.answer_note));host.append(box);
+        }
         if(q.answer_image_data){
           const box=create('div','solution-box');box.append(create('div','solution-title','Solution from source PDF'));
           addImg(q.answer_image_data,'Original PDF worked solution',box);host.append(box);
