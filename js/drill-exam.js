@@ -26,7 +26,7 @@
   }
   function drawQuestionClock(){
     const el=$('drill-question-time');
-    if(el&&state?.status==='active')el.textContent='Question Time: '+formatQuestionTime(questionClockElapsed());
+    if(el&&state?.status==='active')el.textContent=formatQuestionTime(questionClockElapsed());
   }
   const create=(name,cls,text)=>{const el=document.createElement(name);if(cls)el.className=cls;if(text!==undefined)el.textContent=String(text);return el};
   const selectors=(sel,cb)=>document.querySelectorAll(sel).forEach(cb);

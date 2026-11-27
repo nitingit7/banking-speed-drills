@@ -1,16 +1,16 @@
 /* User-requested per-question timer only. Original question layout stays intact. */
 body.exam-page #divHeader_id .drill-question-time {
   float: right;
-  font: 600 13px/30px Arial, Helvetica, sans-serif;
-  color: #27364a;
+  font: 400 12px/30px Arial, Helvetica, sans-serif;
+  color: #667085;
   margin-right: 9px;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
 body.exam-page.bankdrills-analyse-mode #divHeader_id #q-timer {
   float: right !important;
-  font: 600 13px/30px Arial, Helvetica, sans-serif !important;
-  color: #27364a !important;
+  font: 400 12px/30px Arial, Helvetica, sans-serif !important;
+  color: #667085 !important;
   margin-right: 9px !important;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;

@@ -201,7 +201,7 @@
     }
     const badge=$('q-timer');if(badge){
       const recorded=q.time_spent_seconds!==null&&q.time_spent_seconds!==undefined&&Number.isFinite(Number(q.time_spent_seconds));
-      badge.textContent='Question Time: '+(recorded?formatQuestionTime(q.time_spent_seconds):'Not recorded');
+      badge.textContent=recorded?formatQuestionTime(q.time_spent_seconds):'Not recorded';
       badge.title='Time spent on this question in the original completed drill';
       badge.style.display='inline-block';
     }
