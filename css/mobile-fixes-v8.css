@@ -61,3 +61,22 @@
   body.exam-page #screen-exam .headergrup #header {display:none!important;height:0!important;}
   body.exam-page #screen-exam .headergrup {display:flex!important;flex-direction:column!important;align-items:stretch!important;}
 }
+
+/* v10.3: On mobile, flex column children must fill the available viewport.
+   The inherited .main-grid .panel { align-self:start } shrank the Drill settings
+   card to its intrinsic content width on some Android devices. Desktop untouched. */
+@media (max-width: 767px) {
+  body:not(.exam-page) .main-grid > .settings-panel,
+  body:not(.exam-page) .main-grid > .topics-panel {
+    align-self: stretch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  body:not(.exam-page) .main-grid > .settings-panel .mode-options,
+  body:not(.exam-page) .main-grid > .settings-panel .mode-card {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
