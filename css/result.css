@@ -1,0 +1,290 @@
+/* result.css — Result and history screen styles */
+
+body {
+  background: #e8ecf0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.result-header {
+  background: #2c2c2c;
+  flex-shrink: 0;
+}
+
+.result-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.result-exam-name {
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.result-candidate {
+  color: #ccc;
+  font-size: 13px;
+}
+
+.result-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 16px;
+}
+
+.result-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────────────── */
+.result-card {
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* ── Overall score ───────────────────────────────────────────────────────────── */
+.overall-score-box {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.overall-score {
+  font-size: 48px;
+  font-weight: bold;
+  color: #147EB3;
+  line-height: 1;
+}
+.overall-score span { font-size: 22px; color: #888; font-weight: normal; }
+
+.overall-verdict {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 6px;
+}
+.result-pass { color: #22a95a; background: #e8f8ee; }
+.result-fail { color: #e05353; background: #fdf0f0; }
+
+.overall-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.stat-box {
+  background: #f5f7fb;
+  border: 1px solid #e0e8f0;
+  border-radius: 6px;
+  padding: 10px 16px;
+  text-align: center;
+  min-width: 90px;
+}
+.stat-val {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.2;
+}
+.stat-val.green { color: #22a95a; }
+.stat-val.red   { color: #e05353; }
+.stat-val.grey  { color: #888; }
+.stat-val.blue  { color: #1a73e8; }
+.stat-lbl {
+  font-size: 11px;
+  color: #888;
+  margin-top: 3px;
+}
+
+.overall-meta {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #888;
+}
+
+/* ── Tables ──────────────────────────────────────────────────────────────────── */
+.result-card h3 {
+  font-size: 15px;
+  color: #1a73e8;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #e8f0fb;
+  padding-bottom: 6px;
+}
+
+.table-scroll { overflow-x: auto; }
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.result-table th, .result-table td {
+  border: 1px solid #dde6f0;
+  padding: 7px 10px;
+  text-align: left;
+}
+.result-table th { background: #1a73e8; color: #fff; font-weight: 600; }
+.result-table tr:nth-child(even) { background: #f7f9fc; }
+.pass-cell { color: #22a95a; font-weight: bold; }
+.fail-cell { color: #e05353; font-weight: bold; }
+.cutoff-note { color: #e0a030; cursor: help; margin-left: 2px; }
+.cutoff-scale-note {
+  font-size: 12px;
+  color: #888;
+  background: #fffbe6;
+  padding: 6px 10px;
+  border-left: 3px solid #f90;
+  margin-bottom: 10px;
+}
+
+.green { color: #22a95a; }
+.red   { color: #e05353; }
+
+/* ── Charts ──────────────────────────────────────────────────────────────────── */
+.charts-wrap {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.chart-box {
+  flex: 1;
+  min-width: 200px;
+}
+.chart-box h4 {
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #555;
+}
+.chart-box svg { display: block; }
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+.dl-correct { color: #22a95a; }
+.dl-wrong   { color: #e05353; }
+.dl-un      { color: #888; }
+
+/* ── Time table ──────────────────────────────────────────────────────────────── */
+.time-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.time-table th, .time-table td {
+  border: 1px solid #dde; padding: 5px 8px;
+}
+.time-table th { background: #e8ecf0; font-weight: 600; }
+.q-slow { background: #fff7e6 !important; }
+.q-correct { background: #f0fdf4 !important; }
+.q-wrong   { background: #fef2f2 !important; }
+.avg-note { font-size: 11px; color: #888; font-weight: normal; }
+.q-slow-key { color: #e0a030; }
+
+/* ── Attempt history ─────────────────────────────────────────────────────────── */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.history-table th, .history-table td {
+  border: 1px solid #dde6f0; padding: 6px 10px;
+}
+.history-table th { background: #e8ecf0; font-weight: 600; }
+
+.trend-chart-wrap {
+  margin-bottom: 12px;
+  overflow-x: auto;
+}
+
+.btn-view-attempt {
+  background: #1a73e8; color: #fff;
+  border: none; padding: 3px 9px;
+  border-radius: 3px; cursor: pointer;
+  font-size: 12px;
+}
+.btn-view-attempt:hover { background: #1557b0; }
+
+/* ── Action buttons ──────────────────────────────────────────────────────────── */
+.result-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.result-actions button {
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s;
+}
+
+.btn-result-analyse {
+  background: #147EB3; color: #fff;
+}
+.btn-result-analyse:hover { background: #0f6692; }
+
+.btn-result-reattempt-full {
+  background: #22a95a; color: #fff;
+}
+.btn-result-reattempt-full:hover { background: #1a8a47; }
+
+.btn-result-reattempt-wrong {
+  background: #f0b429; color: #fff;
+}
+.btn-result-reattempt-wrong:hover { background: #d99f20; }
+
+.btn-result-new {
+  background: #fff; color: #555;
+  border: 1px solid #bbb !important;
+}
+.btn-result-new:hover { background: #f5f5f5; }
+
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+.result-footer {
+  background: #617B8C;
+  color: #fff;
+  text-align: center;
+  font-size: 11px;
+  height: 22px;
+  line-height: 22px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .overall-score { font-size: 36px; }
+  .overall-stats { gap: 8px; }
+  .stat-box { min-width: 70px; padding: 8px 10px; }
+  .stat-val { font-size: 20px; }
+  .charts-wrap { flex-direction: column; }
+  .result-actions { flex-direction: column; }
+  .result-actions button { width: 100%; }
+}
+
+/* Sole additional Result UI control: Home */
+.btn-result-home {background:#fff; color:#147EB3; border:1px solid #147EB3 !important;}
+.btn-result-home:hover {background:#e8f4fb;}

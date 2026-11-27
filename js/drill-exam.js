@@ -170,6 +170,7 @@
     if(window.Renderer?.applyUiScale) window.Renderer.applyUiScale();
     // Preserve the original arrangement and assets; update only labels tied to source demo data.
     setText('.groupName','Speed Drill');
+    setText('#Physics, #viewSection b','Speed Drill');
     setText('.subjectName','Speed Drill');
     const section=$('sectionId0');
     if(section){selectors('#sectionId0 .sectionNameTxt, #sectionId0 .sectionName',el=>el.textContent='Speed Drill')}
@@ -292,6 +293,7 @@
     if(!window._bdTick)window._bdTick=setInterval(tick,500);
     if(!window._bdRefresh)window._bdRefresh=setInterval(()=>{if(!busy)refresh()},12000);
   }
+  if(params.get('mode')==='analyse') return; // handled by read-only original-UI analyse adapter
   document.addEventListener('DOMContentLoaded',async()=>{
     if(!DrillAPI.auth()){location.replace('index.html?unlock=1');return}
     if(params.get('prepare')==='1'){prepareIntro();return}
