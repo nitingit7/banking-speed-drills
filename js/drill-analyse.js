@@ -119,8 +119,12 @@
       if(qi.childElementCount)host.insertBefore(qi,host.firstChild);
       if(!practice||reAnswer){
         if(q.answer_image_data){
-          const box=create('div','solution-box');box.append(create('div','solution-title','Source answer image'));
-          addImg(q.answer_image_data,'Source answer image',box);host.append(box);
+          const box=create('div','solution-box');box.append(create('div','solution-title','Solution from source PDF'));
+          addImg(q.answer_image_data,'Original PDF worked solution',box);host.append(box);
+        }else if(!String(q.answer_note||'').trim()){
+          const box=create('div','solution-box');box.append(create('div','solution-title','Solution'));
+          box.append(create('div','solution-content','No solution available for this question.'));
+          host.append(box);
         }
         const answer=create('div','solution-box');answer.append(create('div','solution-title',practice?'Re-attempt feedback':'Answer Review'));
         const info=practice

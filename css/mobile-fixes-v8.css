@@ -41,10 +41,15 @@
   #mobile-subject-label {display:none!important;}
 }
 /* This is only activated by the user's A- / A+ controls. Without a click the source font sizes stay intact. */
-body.bmt-font-adjusted #quesAnsContent .textHighlighter,
-body.bmt-font-adjusted #quesAnsContent .opt-text,
-body.bmt-font-adjusted #quesAnsContent .opt-prefix,
-body.bmt-font-adjusted #quesAnsContent .labelForOptText {font-size:var(--bmt-q-font,18px)!important;line-height:1.5!important;}
+@media (max-width:767px) {
+  body.bmt-font-adjusted #quesAnsContent .textHighlighter,
+  body.bmt-font-adjusted #quesAnsContent .opt-text,
+  body.bmt-font-adjusted #quesAnsContent .opt-prefix,
+  body.bmt-font-adjusted #quesAnsContent .labelForOptText {font-size:var(--bmt-q-font,18px)!important;line-height:1.5!important;}
+}
+@media (min-width:768px) {
+  body.exam-page #mobile-font-tools {display:none!important;}
+}
 #mobile-font-tools {position:absolute;top:4px;right:8px;display:flex;align-items:center;gap:3px;z-index:50;background:#fff;border:1px solid #d3e0e9;border-radius:6px;padding:2px;box-shadow:0 1px 3px #0001;}
 #mobile-font-tools button {border:0;background:#eef7fd;color:#17658f;border-radius:4px;font:700 13px Arial,sans-serif;min-width:33px;min-height:28px;padding:4px;cursor:pointer;}
 #mobile-font-tools button:focus-visible {outline:2px solid #147eb3;outline-offset:2px;}
