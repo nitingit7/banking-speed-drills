@@ -13,9 +13,13 @@
     if(q?.selected===null||q?.selected===undefined||q?.selected==='')return 'skipped';
     return Number(q.selected)===Number(q.correct_index)?'correct':'wrong';
   };
+  // In completed-attempt Analyse, colors reflect CORRECTNESS, not how the
+  // user navigated during the exam. Answered & Marked remains distinctive.
   const originalClass=q=>{
     if(q?.marked)return originalStatus(q)==='skipped'?'review':'review_answered';
-    return originalStatus(q)==='skipped'?'not_answered':originalStatus(q)==='correct'?'answered':'not_answered';
+    if(originalStatus(q)==='correct')return 'answered';
+    if(originalStatus(q)==='wrong')return 'not_answered';
+    return 'not_visited'; // Skipped and Unseen: same grey as in the exam.
   };
   function message(text){const host=$('quesAnsContent');if(host)host.textContent=String(text);}
   function matching(i){
@@ -46,16 +50,16 @@
     for(const [i,q] of data.review.entries()){
       const st=originalStatus(q);
       if(q.marked){if(st==='skipped')c.marked++;else c.markedAnswered++;}
-      else if(st!=='skipped')c.answered++;
-      else if(q.visited===false)c.notVisited++;
-      else c.notAnswered++;
+      else if(st==='correct')c.answered++;
+      else if(st==='wrong')c.notAnswered++;
+      else c.notVisited++;
       if(!matching(i))continue; // Actual filter, not just a faded badge.
       const wrap=create('div');wrap.id='qtd'+i;
       const item=create('span','tipIcon numpan auditlog '+originalClass(q),i+1);
       item.id=String(i);item.setAttribute('role','button');item.tabIndex=0;
       if(i===index)item.setAttribute('aria-current','true');
       item.setAttribute('aria-label','Review question '+(i+1));
-      item.title='Question '+(i+1)+' — '+st+(tries.has(i)?' — practised':'');
+      item.title='Question '+(i+1)+' — '+(q.marked?(st==='skipped'?'Marked without answer':'Answered & Marked · '+st):st)+(tries.has(i)?' — practised':'');
       item.onclick=()=>{index=i;render();};
       item.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();index=i;render();}};
       wrap.append(item);panel.append(wrap);
@@ -171,6 +175,12 @@
       'underreviewMbl','clearResponseMbl','savenextMbl','optionselectionButton','optionselectionButtonMb1']){
       if($(key))$(key).style.display='none';
     }
+    // Adapt the original palette legend ONLY in read-only Analyse view.
+    for(const [sel,text] of [['.answeredLabel','Correct'],['.notAnsweredLabel','Wrong'],
+      ['.notVisitedLabel','Skipped / Not Visited'],['.markedLabel','Marked (No Answer)']]){
+      document.querySelectorAll(sel).forEach(el=>el.textContent=text);
+    }
+    document.querySelectorAll('.markedAnsweredCount').forEach(el=>el.title='Answered & Marked for Review (correct or wrong, see answer review)');
     const bar=$('analyse-top-bar');if(bar)bar.style.display='flex';
     const toggle=$('reattempt-switch');if(toggle){
       toggle.disabled=false;toggle.checked=false;toggle.removeAttribute('title');

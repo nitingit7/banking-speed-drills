@@ -11,6 +11,7 @@
   const dur=(n)=>{n=Math.max(0,Math.round(num(n)));return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0')};
   const esc=x=>String(x??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   const toSeconds=(a)=>{
+    if(a?.sections?.length && Number.isFinite(Number(a?.practice_seconds)))return Math.max(0,Number(a.practice_seconds));
     const from=Date.parse(String(a?.started_at||''));const to=Date.parse(String(a?.finished_at||''));
     if(!Number.isFinite(from)||!Number.isFinite(to))return null;
     return Math.max(0,Math.min((to-from)/1000,num(a.total)*num(a.seconds_per_question||45)));

@@ -30,3 +30,20 @@
 .loading-ring{margin:auto;width:44px;height:44px;border:4px solid #d6ebf5;border-top-color:#147eb3;border-radius:50%;animation:drills-spin .75s linear infinite}
 @keyframes drills-spin{to{transform:rotate(360deg)}}
 @media(max-width:600px){.login-mask{padding-top:35px}.resume-row{align-items:flex-start}.login-mask-card{padding:20px}}
+/* v6 additive controls. Original TCS exam CSS/assets are unchanged. */
+.section-times{margin-top:18px;border-top:1px solid #dce6ee;padding-top:5px}
+.section-time-row{display:flex;justify-content:space-between;gap:12px;align-items:center;border:1px solid #e1e9f0;border-radius:9px;padding:11px;margin:8px 0;background:#fcfdff}
+.section-time-row strong{font-size:12px}.section-time-row small{display:block;color:#60798d;font-size:11px;margin-top:2px}
+.section-time-controls{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.section-time-controls select,.section-time-controls input{font:inherit;font-size:12px;border:1px solid #bed0de;border-radius:7px;background:#fff;padding:8px;max-width:162px}
+.section-time-controls input{max-width:82px}
+.trend-controls{display:flex;align-items:flex-end;flex-wrap:wrap;gap:9px;margin-top:13px}
+.trend-controls label{display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:750;color:#576d80}
+.trend-controls select{font:inherit;font-size:12px;background:#fff;border:1px solid #cfdeec;border-radius:6px;padding:8px;max-width:200px}
+#trend-note{margin-top:9px;display:block}.progress-area{min-height:190px}.progress-area .chart{height:auto;max-height:275px}
+.history-pagination{margin-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.history-page-buttons{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.history-page-buttons button{border:1px solid #d1dfeb;background:#fff;color:#155e86;border-radius:6px;padding:7px 10px;font:inherit;font-size:12px;font-weight:700}
+.history-page-buttons button:disabled{opacity:.48;cursor:default}
+.history-page-buttons .page-number.current{background:#147eb3;color:#fff;opacity:1;border-color:#147eb3}
+#history-pages{display:flex;gap:5px;align-items:center}
+@media(max-width:680px){.section-time-row{align-items:flex-start;flex-direction:column}.trend-controls label{min-width:100px;flex:1}.trend-controls select{width:100%}}

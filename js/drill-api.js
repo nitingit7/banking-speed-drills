@@ -25,13 +25,16 @@ window.DrillAPI = (() => {
   const api={base,auth,unlock,signOut,request,
     catalog:()=>request('/api/bankdrills/catalog'),
     attempts:()=>request('/api/bankdrills/attempts'),
-    start:(mode,topic_keys,count,subject_counts={})=>request('/api/bankdrills/attempts/start',{method:'POST',body:{mode,topic_keys,count,subject_counts}}),
+    history:(page=1)=>request('/api/bankdrills/attempts/history?page='+encodeURIComponent(page)),
+    trends:(range='30d',subject='all')=>request('/api/bankdrills/trends?range='+encodeURIComponent(range)+'&subject='+encodeURIComponent(subject)),
+    start:(mode,topic_keys,count,subject_counts={},subject_seconds_per_question={})=>request('/api/bankdrills/attempts/start',{method:'POST',body:{mode,topic_keys,count,subject_counts,subject_seconds_per_question}}),
     stats:()=>request('/api/bankdrills/stats'),
     current:(id)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)),
     answer:(id,index,choice,mark_for_review=false)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/answer',{method:'POST',body:{index,choice,mark_for_review}}),
     navigate:(id,index)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/navigate',{method:'POST',body:{index}}),
     advance:(id,index)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/advance',{method:'POST',body:{index}}),
-    submit:(id)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/submit',{method:'POST',body:{}}),
+    submit:(id,section_index=null)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/submit',{method:'POST',body:{section_index}}),
+    heartbeat:(id)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/heartbeat',{method:'POST',body:{}}),
     result:(id)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/result')
   };
   return api;
