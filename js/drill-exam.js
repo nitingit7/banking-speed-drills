@@ -307,10 +307,6 @@
       const image=create('img','drill-question-image');image.src=imgData;image.alt='Question image';host.append(image);
       image.addEventListener('click',()=>{const modal=$('modal-image-lightbox');const zoom=$('lightbox-img');if(modal&&zoom){zoom.src=imgData;showModal('image-lightbox')}});
     }
-    if(q.source_ref){
-      const ref=create('div','source-question-reference','Source ID: '+q.source_ref);
-      host.append(ref);
-    }
     const choices=create('div','removeAria');choices.style.cssText='width:100%;font-family:Arial,verdana,helvetica,sans-serif;margin-top:5px';choices.setAttribute('role','radiogroup');
     const wrap=create('div');for(let i=0;i<(q.options||[]).length;i++)wrap.append(makeAnswerOption(q.options[i],i));choices.append(wrap);host.append(choices);
     lastChoice=state.choice??null;
