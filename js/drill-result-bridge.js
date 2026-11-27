@@ -80,15 +80,12 @@
       // Intercept only navigation features that originally depended on
       // non-server localStorage, keeping all their visible original buttons.
       document.addEventListener('click',e=>{
-        const btn=e.target.closest('#btn-home,#btn-analyse,#btn-reattempt-full,#btn-reattempt-wrong,#btn-new-test,.btn-view-attempt');
+        const btn=e.target.closest('#btn-home,#btn-analyse,.btn-view-attempt');
         if(!btn)return;
         e.preventDefault();e.stopImmediatePropagation();
-        if(btn.id==='btn-home'||btn.id==='btn-new-test'){location.href='index.html';return}
+        if(btn.id==='btn-home'){location.href='index.html';return}
         if(btn.id==='btn-analyse'){location.href='drill.html?mode=analyse&attempt='+encodeURIComponent(id);return}
         if(btn.classList.contains('btn-view-attempt')){location.href='drill.html?mode=analyse&attempt='+encodeURIComponent(btn.dataset.id);return}
-        if(btn.id.startsWith('btn-reattempt')){
-          alert('Re-attempting the exact same questions needs a separate VM re-attempt endpoint. Your questions and results are unchanged. To practice again, use Home.');
-        }
       },true);
     } catch(e){status('Unable to load result: '+(e?.message||e));}
   }

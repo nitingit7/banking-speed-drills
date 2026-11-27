@@ -135,10 +135,41 @@
     box.append(create('p',null,'The VM sends only the requested question; it does not publish answer keys or the complete question bank.'));
     showModal('qpaper');
   }
-  function submitModal(){
-    if(!state||state.status!=='active')return;
-    const box=$('submit-summary');if(box){box.replaceChildren();box.append(create('p',null,'Questions: '+state.total+' · Current question: '+(state.current_index+1)+' · Mode: '+modeText()));}
+  async function submitModal(){
+    if(!state||state.status!=='active'||busy)return;
+    const box=$('submit-summary'),confirm=$('btn-confirm-submit');
     showModal('submit');
+    if(confirm)confirm.disabled=true;
+    if(box)box.textContent='Updating question status…';
+    busy=true;
+    try{
+      // The supplied original mock exam commits the current response when Submit
+      // is opened. Match that behavior without exposing scoring on the client.
+      await saveQueue.catch(()=>{});
+      if(state.status!=='active')return;
+      const currentChoice=choice();
+      if(currentChoice!== (state.choice??null)){
+        const status=(state.statuses||[])[state.current_index];
+        const marked=status==='marked'||status==='answered-marked';
+        state=await DrillAPI.answer(attemptId,state.current_index,currentChoice,marked);
+      }
+      if(state.status!=='active'){
+        location.replace('result.html?attempt='+encodeURIComponent(attemptId));return;
+      }
+      // Same seven-column source-project table, with real VM palette statuses.
+      // One combined section keeps these totals accurate even if a drill mixes
+      // subjects (the VM shuffles all selected questions together).
+      const summaryQuestions=(state.statuses||[]).map(st=>({sectionIndex:0,status:st}));
+      if(box&&typeof Renderer!=='undefined'&&typeof Renderer.renderSubmitSummary==='function'){
+        Renderer.renderSubmitSummary(box,{sections:[{name:'Speed Drill'}],questions:summaryQuestions});
+        const counted=(state.statuses||[]).filter(st=>st==='answered'||st==='answered-marked').length;
+        const note=create('p');
+        note.style.cssText='margin:10px 0 0;font-size:12px;color:#444';
+        note.textContent='Answers counted for evaluation: '+counted+' (Answered + Answered & Marked). Marked without an answer is not evaluated.';
+        box.append(note);
+      } else if(box)box.textContent='Unable to render the source submit summary. Please refresh and retry.';
+    }catch(e){warn(e);if(box)box.textContent='Could not update the summary: '+(e?.message||e)}
+    finally{busy=false;if(confirm&&box?.querySelector('table'))confirm.disabled=false}
   }
   async function submit(){if(busy||!state)return;busy=true;try{await saveQueue.catch(()=>{});state=await DrillAPI.submit(attemptId);location.replace('result.html?attempt='+encodeURIComponent(attemptId))}catch(e){warn(e)}finally{busy=false;closeAllModals()}}
   function setPaletteCollapsed(on){document.body.classList.toggle('is-palette-collapsed',on);selectors('.expand_icon',el=>el.style.display=on?'block':'none');sessionStorage.setItem('bankdrills_palette_collapsed',on?'1':'0')}
