@@ -25,6 +25,8 @@ window.DrillAPI = (() => {
   const api={base,auth,unlock,signOut,request,
     catalog:()=>request('/api/bankdrills/catalog'),
     attempts:()=>request('/api/bankdrills/attempts'),
+    unfinished:()=>request('/api/bankdrills/attempts/unfinished'),
+    cancelAllUnfinished:()=>request('/api/bankdrills/attempts/cancel-active',{method:'POST',body:{}}),
     history:(page=1)=>request('/api/bankdrills/attempts/history?page='+encodeURIComponent(page)),
     trends:(range='30d',subject='all')=>request('/api/bankdrills/trends?range='+encodeURIComponent(range)+'&subject='+encodeURIComponent(subject)),
     start:(mode,topic_keys,count,subject_counts={},subject_seconds_per_question={})=>request('/api/bankdrills/attempts/start',{method:'POST',body:{mode,topic_keys,count,subject_counts,subject_seconds_per_question}}),

@@ -47,3 +47,14 @@
 .history-page-buttons .page-number.current{background:#147eb3;color:#fff;opacity:1;border-color:#147eb3}
 #history-pages{display:flex;gap:5px;align-items:center}
 @media(max-width:680px){.section-time-row{align-items:flex-start;flex-direction:column}.trend-controls label{min-width:100px;flex:1}.trend-controls select{width:100%}}
+
+/* Cancel only unfinished tests; keep completed attempts and scores. */
+.resume-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.resume-heading h3{margin:0}
+.resume-cancel-all{font:inherit;font-size:12px;font-weight:700;color:#b42318;background:#fff;border:1px solid #e7aaa4;border-radius:7px;padding:7px 10px;cursor:pointer}
+.resume-cancel-all:hover{background:#fff0ed}
+.resume-cancel-all:focus-visible{outline:2px solid #b42318;outline-offset:2px}
+.resume-cancel-all:disabled{opacity:.6;cursor:wait}
+.resume-error{color:#b42318;background:#fff3f1;border:1px solid #f0c5bf;padding:9px 10px;border-radius:7px;font-size:12px}
+.resume-error[hidden]{display:none}
+@media(max-width:600px){.resume-heading{align-items:flex-start;flex-direction:column}.resume-cancel-all{width:100%;min-height:40px}}

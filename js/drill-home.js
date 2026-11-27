@@ -75,7 +75,7 @@
     }
     banner('Loading question availability and unfinished tests…');$('status-banner').hidden=false;
     try{
-      const [data,history]=await Promise.all([DrillAPI.catalog(),DrillAPI.attempts()]);
+      const [data,history]=await Promise.all([DrillAPI.catalog(),DrillAPI.unfinished()]);
       const lookup=new Map((data.topics||[]).map(t=>[t.key,t]));
       for(const t of topics){const server=lookup.get(t.key);t.available=server&&server.subject===t.subject?Number(server.available)||0:0}
       unfinished=(history.attempts||[]).filter(a=>a.status==='active');
@@ -84,6 +84,22 @@
       $('status-banner').hidden=true;
     }catch(e){banner('Unable to load your account data: '+e.message);$('status-banner').hidden=false}
   }
+  $('cancel-all-unfinished').onclick=async()=>{
+    if(!DrillAPI.auth()||!unfinished.length)return;
+    const count=unfinished.length;
+    const confirmed=confirm('Permanently cancel ALL '+count+' unfinished test'+(count===1?'':'s')+' on your account?\n\nTheir unsaved or unfinished answers will be lost, including tests open on other devices. This cannot be undone.\n\nCompleted tests, scores, and question bank will NOT be deleted.');
+    if(!confirmed)return;
+    const btn=$('cancel-all-unfinished'),error=$('resume-error');
+    btn.disabled=true;btn.textContent='Cancelling…';error.hidden=true;error.textContent='';
+    try{
+      const result=await DrillAPI.cancelAllUnfinished();
+      await refresh();
+      const n=Number(result.cancelled||0);
+      banner(n?n+' unfinished test'+(n===1?'':'s')+' cancelled. Completed tests and scores were kept.':'No unfinished tests remained to cancel.',true);
+      $('status-banner').hidden=false;
+    }catch(err){error.textContent='Unable to cancel unfinished tests: '+err.message;error.hidden=false;}
+    finally{btn.disabled=false;btn.textContent='Cancel All Unfinished Tests';}
+  };
   $('btn-unlock').onclick=()=>{if(DrillAPI.auth()){if(confirm('Sign out this device? Your history remains on your VM.')){DrillAPI.signOut();location.reload()}}else unlockVisible(true)};
   $('close-unlock').onclick=()=>unlockVisible(false);
   $('unlock-form').onsubmit=async e=>{e.preventDefault();$('unlock-error').textContent='';$('submit-unlock').disabled=true;try{await DrillAPI.unlock($('unlock-email').value.trim(),$('unlock-password').value);$('unlock-password').value='';unlockVisible(false);await refresh()}catch(err){$('unlock-error').textContent=err.message}finally{$('submit-unlock').disabled=false}};
