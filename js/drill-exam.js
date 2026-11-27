@@ -9,7 +9,10 @@
   let attemptId=params.get('attempt'), pending=null, state=null, offset=0;
   let busy=false,refreshing=false,saveQueue=Promise.resolve(),lastChoice=null;
   let nextExpiryRefresh=0;
-  let started=false;
+  let started=false, newAttempt=false;
+  // A monotonic display anchor avoids jumps from delayed API replies or wall-clock edits.
+  // VM deadlines remain authoritative; this changes only the displayed countdown.
+  let mainClockAnchor=null;
   let questionClock={index:-1,base:0,at:0,running:false};
   const formatQuestionTime=secs=>{
     const n=Math.max(0,Math.floor(Number(secs)||0));
@@ -20,8 +23,21 @@
       ? Math.max(0,(performance.now()-questionClock.at)/1000):0);
   }
   function setQuestionClock(){
-    questionClock={index:Number(state?.current_index??-1),base:Math.max(0,Number(state?.question_time_seconds)||0),
-      at:performance.now(),running:state?.status==='active'&&state?.question_time_running!==false&&document.visibilityState==='visible'};
+    const index=Number(state?.current_index??-1);
+    const serverSeconds=Math.max(0,Number(state?.question_time_seconds)||0);
+    const now=performance.now();
+    const running=state?.status==='active'&&state?.question_time_running!==false&&document.visibilityState==='visible';
+    if(questionClock.index!==index){
+      // The question changed: start a fresh, VM-anchored stopwatch.
+      questionClock={index,base:serverSeconds,at:now,running};
+    }else{
+      // Periodic GET responses can trail authenticated heartbeats. Never reset
+      // a live stopwatch backwards to an older saved value on every refresh.
+      const displayed=questionClockElapsed();
+      if(questionClock.running!==running||serverSeconds>displayed){
+        questionClock={index,base:Math.max(displayed,serverSeconds),at:now,running};
+      }
+    }
     drawQuestionClock();
   }
   function drawQuestionClock(){
@@ -129,7 +145,7 @@
         if(!created?.id)throw new Error('The VM did not return an attempt ID');
         attemptId=created.id;history.replaceState(null,'','drill.html?attempt='+encodeURIComponent(attemptId));
         sessionStorage.removeItem(pendingKey);
-        state=await DrillAPI.current(attemptId);offset=Date.parse(state.server_now)-Date.now();activate();
+        state=await DrillAPI.current(attemptId);offset=Date.parse(state.server_now)-Date.now();newAttempt=true;activate();
       }catch(e){warn('Unable to start speed drill: '+e.message);begin.disabled=false}
       finally{busy=false}
     });
@@ -379,13 +395,28 @@
   }
   function tick(){
     if(!started||!state||state.status!=='active')return;
-    const now=Date.now()+offset;
-    const overall=Math.max(0,Math.ceil((Date.parse(sectionInfo().deadline_at||state.overall_deadline_at)-now)/1000));
+    const deadline=sectionInfo().deadline_at||state.overall_deadline_at;
+    const deadlineMs=Date.parse(deadline);
+    const serverNowMs=Date.parse(state.server_now);
+    const perfNow=performance.now();
+    // The server's deadline (not setInterval ticks) controls this timer.
+    // Maintain one monotonic anchor per section, reducing it when the VM
+    // supplies a later observation, but never granting extra time because
+    // an older or delayed response arrived after a newer one.
+    const sectionKey=String(attemptId)+'|'+String(state.section_index??'legacy')+'|'+String(deadline);
+    const observedDeadline=perfNow+Math.max(0,deadlineMs-serverNowMs);
+    if(!mainClockAnchor||mainClockAnchor.key!==sectionKey){
+      mainClockAnchor={key:sectionKey,deadlinePerf:observedDeadline};
+    }else if(Number.isFinite(observedDeadline)){
+      mainClockAnchor.deadlinePerf=Math.min(mainClockAnchor.deadlinePerf,observedDeadline);
+    }
+    const overall=Number.isFinite(mainClockAnchor.deadlinePerf)
+      ?Math.max(0,Math.ceil((mainClockAnchor.deadlinePerf-perfNow)/1000)):0;
     const left=overall;
     const min=String(Math.floor(left/60)).padStart(2,'0');const sec=String(left%60).padStart(2,'0');
     setText('#timeInMins',min+':'+sec);
     if($('m01_hrs'))$('m01_hrs').textContent='00';if($('min_val'))$('min_val').textContent=min;if($('sec01_val'))$('sec01_val').textContent=sec;
-    if(overall===0&&Date.now()>nextExpiryRefresh){nextExpiryRefresh=Date.now()+2000;refresh()}
+    if(overall===0&&perfNow>nextExpiryRefresh){nextExpiryRefresh=perfNow+2000;refresh()}
     const el=$('showTime');if(el)el.title='Remaining time for '+sectionInfo().subject+': '+overall+' seconds';
     drawQuestionClock();
   }
@@ -394,9 +425,9 @@
     showScreen('exam');render();tick();
     // A newly opened/resumed tab starts a fresh foreground observation. Do not
     // assign dormant time from an abandoned device to this question.
-    DrillAPI.heartbeat(attemptId,true,true).then(snap=>{
+    DrillAPI.heartbeat(attemptId,true,!newAttempt).then(snap=>{
       const changed=snap.status!==state?.status||snap.current_index!==state?.current_index||snap.section_index!==state?.section_index;
-      state=snap;offset=Date.parse(snap.server_now)-Date.now();
+      state=snap;offset=Date.parse(snap.server_now)-Date.now();newAttempt=false;
       if(changed)render();else setQuestionClock();tick();
     }).catch(()=>{});
     if(!window._bdTick)window._bdTick=setInterval(tick,500);
