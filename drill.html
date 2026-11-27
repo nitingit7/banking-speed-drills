@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+
+<html data-bmt-build-version="20261018_125625" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Banking Speed Drills — Exam</title>
+<link href="css/jplayer.blue.monday.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/mock_style.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/keyboard-oxford.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/jquery.accent-keyboard.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/RightToLeft.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/jquery.freetrans.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/jquery-ui-1.10.4.custom.min.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/jquery.ui.rotatable.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/calc.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/screen.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/scratchpad.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/nanoscroller.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/style.css?v=20261018_125625" media="all" rel="stylesheet"/>
+<link href="css/quizStyle.css?v=20261018_125625" media="all" rel="stylesheet"/>
+<link href="css/thickbox.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/jquery.alerts.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/aecInstructions.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/codemirror.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/keyboard_style.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/jquery.jqzoom.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/jcarousel.connected-carousels.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/popupwindow.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/font-awesome.min.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/iBAInterviewerScreens.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/scribblePad.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/blackboard.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/cobalt.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/elegant.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/cmstyle.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/britishCouncil.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/canvas-style.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/video-js.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/livefeed.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/editor.css?v=20261018_125625" rel="stylesheet"/>
+<link href="css/extras.css?v=20261018_125625" rel="stylesheet"/>
+</head>
+<body class="exam-page" onselectstart="return false;">
+<!-- Fullscreen return warning banner -->
+<div class="fullscreen-warning-banner" id="fullscreen-warning-banner" role="alert" style="display:none;">
+<span>Warning: You have exited full-screen mode. Please return to full-screen mode to continue your exam.</span>
+<button class="btn-return-fullscreen" id="btn-return-fullscreen" type="button">Return to Full Screen</button>
+</div>
+<!-- Scroll disabled warning banner -->
+<div aria-live="assertive" class="scroll-warning-banner" id="scroll-warning-banner" role="alert" style="display:none;">
+        Scrolling is disabled to provide a real examination environment.
+    </div>
+<!-- Scale reduced to fit toast (bottom-left above bottom bar, dismissible on click) -->
+<div aria-live="polite" id="bmt-scale-reduced-toast" role="alert" style="display:none; position:fixed; bottom:52px; left:16px; z-index:99999; background:#fff3cd; color:#856404; border:1px solid #ffeeba; border-radius:4px; padding:6px 12px; font-size:12px; font-weight:600; font-family:Arial, sans-serif; box-shadow:0 2px 8px rgba(0,0,0,0.15); cursor:pointer; align-items:center; gap:8px;" title="Click to dismiss">
+<span>Reduced to fit screen</span> <span style="font-size:14px; line-height:1; opacity:0.7;">×</span>
+</div>
+<!-- ── SCREEN 1: GENERAL INSTRUCTIONS (Cloned TCS iON) ── -->
+<div class="screen-instructions-container" id="screen-instructions" style="display:none; width:100%; height:100%;">
+<div class="inst-container" id="container" style="outline:none;" tabindex="-1">
+<section class="commanHeaderPatch" style="display:none;">
+<div class="subjectdetailsArea">
+<div class="subjectdetailsAreaInside">
+<h1 class="subjectDetailHead mockName instMockName">Banking Speed Drill</h1>
+<div class="profileDetailsCricle">
+<div class="userProfileDataMain">
+<button aria-label="user profile" class="userProfileBtn userProfileBtnAction"></button>
+<div class="userProfileDataDiv" style="display: none;">
+<label class="userName candOrigName"></label>
+<label class="userId">ANV12345</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="inst-header" id="header" role="banner" style="display:flex; align-items: center;">
+<div id="bannerImg" style="display:none"></div>
+<div id="bannerText" style="font-weight:bold; margin:0 auto;"><font color="#ffffff" size="4"><span class="instMockName">Banking Speed Drill</span></font></div>
+</div>
+<div class="inst-body-wrapper" style="width: 100%; height: calc(var(--bmt-viewport-height, 100vh) - 50px - 22px); display: flex;">
+<div class="inst-mainleft" id="mainleft" role="main" style="float: left; border-right: 1px solid rgb(0, 0, 0); width: 79%; height: 100%; display: flex; flex-direction: column;">
+<div id="mobileTimer" style="float: right;padding: 10px; display: none;">Time :</div>
+<div aria-level="1" class="titlepath sysInstruLabel" id="instruction" role="heading" style="padding-left: 10px; text-align: left; outline: none;" tabindex="-1">Instructions</div>
+<div aria-atomic="true" aria-live="polite" class="visually-hidden" id="shortCutInstru" style="overflow: hidden;position: absolute;left: -99999px;height: 1px;width: 1px;">Keyboard shortcuts are available to help you navigate the assessment efficiently. You can access the list of shortcuts at any time by pressing Alt + slash.</div>
+<div aria-hidden="false" class="inst-common-content" id="commonPageInstruction" style="flex: 1; overflow: hidden; height: auto;">
+<div id="firstPage" style="overflow: hidden; padding-left: 13px">
+<span style="float: right; display: none; padding: 2px;"><span class="viewIn">View in :</span> <select aria-labelledby="viewIn_id" id="basInst" onchange="parent.changeSysInst(this,'sysInstText','cusInstText')"><option translate="no" value="sysInstText1">English</option></select></span>
+<div class="sysInstText1" id="instructions-body" style="height: 93%; width: 97%; overflow: auto; padding-left: 10px;" tabindex="0"><div> <h5><font size="4">  </font></h5><center><font size="4">Please read the instructions carefully </font></center> </div> <p><strong><u>General Instructions:</u></strong></p> <ol style="TEXT-ALIGN: left; LIST-STYLE-TYPE: decimal; PADDING-LEFT: 4%; PADDING-TOP: 3px"> <li>Total duration of examination is <span class="completeDuration">120</span> minutes.</li> <li>The clock will be set at the server. The countdown timer in the top right corner of screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end by itself. You will not be required to end or submit your examination.</li> <li>The Question Palette displayed on the right side of screen will show the status of each question using one of the following symbols: <table class="instruction_area" style="FONT-SIZE: 100%"> <tbody> <tr> <td><span class="not_visited" title="Not Visited">1</span></td> <td>You have not visited the question yet.</td> </tr> <tr> <td><span class="not_answered" title="Not Answered">2</span></td> <td>You have not answered the question.</td> </tr> <tr> <td><span class="answered" title="Answered">3</span></td> <td>You have answered the question.</td> </tr> <tr> <td><span class="review" title="Marked for Review">4</span></td> <td>You have NOT answered the question, but have marked the question for review.</td> </tr> <tr> <td><span class="review_marked_considered" title="Answered &amp; Marked for Review">5</span></td> <td>The question(s) "Answered and Marked for Review" will be considered for evaluation.</td> </tr> <tr> <td><span class="review_marked" title="Answered &amp; Marked for Review">6</span></td> <td>The question(s) "Marked for Review" will be not be considered for evaluation. Hence, no marks will be allocated for the same.</td> </tr> </tbody> </table> </li> <li style="LIST-STYLE-TYPE: none">The Marked for Review status for a question simply indicates that you would like to look at that question again.</li> </ol> <ol start="4" style="TEXT-ALIGN: left; LIST-STYLE-TYPE: decimal; PADDING-LEFT: 4%; PADDING-TOP: 3px"> <li>You can click on the "&gt;" arrow which appears to the left of question palette to collapse the question palette thereby maximizing the question window. To view the question palette again, you can click on "&lt; " which appears on the right side of question window.</li> <li>You can click on your "Profile" image on top right corner of your screen to change the language during the exam for entire question paper. On clicking of Profile image you will get a drop-down to change the question content to the desired language.</li><li>You can click on <img class="scrollBottom" id="scrollBottom" src="images/Down.png" title="Scroll Down"/> to navigate to the bottom and <img class="scrollTop" id="scrollTop" src="images/Up.png" title="Scroll Up"/>to navigate to the top of the question area, without scrolling.</li> </ol> <br/> <strong><u>Navigating to a Question:</u></strong> <ol start="7" style="TEXT-ALIGN: left; LIST-STYLE-TYPE: decimal; PADDING-LEFT: 4%; PADDING-TOP: 3px "> <li>To answer a question, do the following: <ol style="TEXT-ALIGN: left; PADDING-LEFT: 4%; PADDING-TOP: 3px " type="a"> <li>Click on the question number in the Question Palette at the right of your screen to go to that numbered question directly. Note that using this option does NOT save your answer to the current question.</li> <li>Click on <b>Save &amp; Next</b> to save your answer for the current question and then go to the next question.</li> <li>Click on <b>Mark for Review &amp; Next</b> to save your answer for the current question, mark it for review, and then go to the next question.</li> </ol> </li> </ol> <p> <b><u>Answering a Question : </u></b></p> <ol start="8" style="TEXT-ALIGN: left; LIST-STYLE-TYPE: decimal; PADDING-LEFT: 4%; PADDING-TOP: 3px "> <li>Procedure for answering a multiple choice type question: <ol style="TEXT-ALIGN: left; PADDING-LEFT: 4%; PADDING-TOP: 3px " type="a"> <li>To select your answer, click on the button of one of the options</li> <li>To deselect your chosen answer, click on the button of the chosen option again or click on the <b>Clear Response</b> button</li> <li>To change your chosen answer, click on the button of another option</li> <li>To save your answer, you MUST click on the<b> Save &amp; Next</b> button</li> <li>To mark the question for review, click on the<b> Mark for Review &amp; Next</b> button.</li> </ol> <ol start="9" style="PADDING-LEFT: 1px; "> <li>To change your answer to a question that has already been answered, first select that question for answering and then follow the procedure for answering that type of question.</li> </ol> </li> </ol> <p> <b><u>Navigating through sections:</u></b></p> <ol start="10" style="TEXT-ALIGN: left; LIST-STYLE-TYPE: decimal; PADDING-LEFT: 4%; PADDING-TOP: 3px "> <li>Sections in this question paper are displayed on the top bar of the screen. Questions in a section can be viewed by clicking on the section name. The section you are currently viewing is highlighted.</li> <li>After clicking the Save &amp; Next button on the last question for a section, you will automatically be taken to the first question of the next section.</li> <li>You can shuffle between sections and questions anytime during the examination as per your convenience only during the time stipulated.</li> <li>Candidate can view the corresponding section summary as part of the legend that appears in every section above the question palette.</li> </ol> <p class="imageZoom" style="display: none;"><br/> <b><u>Instruction for images:</u></b></p> <ol class="imageZoom" start="14" style="text-align: left; list-style-type: decimal; padding-left: 4%; padding-top: 3px; display: none;"> <li>To zoom the image provided in the question roll over it.</li> </ol></div></div>
+</div>
+<div aria-hidden="false" aria-label="Ready to begin" class="readyBeginFooter" role="region">
+<div align="center" class="btnsection" id="instPagination" style="padding:10px 20px;">
+<button class="btn btn-primary" id="instPaginationa" style="margin-top: 10px; line-height: 38px; float: right;"><span><strong><span id="nextTxt">Next</span></strong><img height="18" id="imgdetails" src="images/Forward-25.png" width="25"/></span></button>
+</div>
+</div>
+</div>
+<div aria-hidden="false" aria-label="user profile" class="inst-mainright" id="mainright" role="region" style="border-left: 1px solid rgb(0, 0, 0); width: 21%; height: 100%; position: relative; background:#fff;">
+<div class="instruTimeCountDiv">
+<div class="instruTimeCounter"> </div>
+</div>
+<div style="position:relative;padding:20px">
+<center><img alt="candidate Image" class="candidateImg mockCandidateImg" src="images/NewCandidateImage.jpg" style="height:100px;width:100px"/> </center>
+</div>
+<div class="candOriginalName decl-cand-name" id="name" style="font-size: 16px; color: rgb(79, 104, 135); font-weight: bold; text-align: center;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"></div>
+<div class="bluebg"></div>
+</div>
+</div>
+<footer class="inst-footer" id="footer" style="height: 22px; width: 100%; background: #4D8CCA; line-height: 22px;">
+<div class="footerContainer">
+<div class="footerText" style="text-align: center; color: #fff; font-size: 11px;">
+<span class="versionText">Version : 17.07.00</span>
+</div>
+</div>
+</footer>
+</div>
+</div>
+<!-- ── SCREEN 2: DECLARATION (Cloned TCS iON) ── -->
+<div class="screen-declaration-container" id="screen-declaration" style="display:none; width:100%; height:100%;">
+<div class="inst-container" id="container" style="outline:none;" tabindex="-1">
+<section class="commanHeaderPatch" style="display:none;">
+<div class="subjectdetailsArea">
+<div class="subjectdetailsAreaInside">
+<h1 class="subjectDetailHead mockName instMockName">Banking Speed Drill</h1>
+<div class="profileDetailsCricle">
+<div class="userProfileDataMain">
+<button aria-label="user profile" class="userProfileBtn userProfileBtnAction"></button>
+<div class="userProfileDataDiv" style="display: none;">
+<label class="userName candOrigName"></label>
+<label class="userId">ANV12345</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="inst-header" id="header" role="banner" style="display:flex; align-items: center;">
+<div id="bannerImg" style="display:none"></div>
+<div id="bannerText" style="font-weight:bold; margin:0 auto;"><font color="#ffffff" size="4"><span class="instMockName">Banking Speed Drill</span></font></div>
+</div>
+<div class="inst-body-wrapper" style="width: 100%; height: calc(var(--bmt-viewport-height, 100vh) - 50px - 22px); display: flex;">
+<div class="inst-mainleft" id="mainleft" role="main" style="float: left; border-right: 1px solid rgb(0, 0, 0); width: 79%; height: 100%; display: flex; flex-direction: column;">
+<div id="mobileTimer" style="float: right;padding: 10px; display: none;">Time :</div>
+<div aria-level="1" class="titlepath otherInstruLabel" id="instruction" role="heading" style="padding-left: 10px; text-align: left; outline: none;" tabindex="-1">Other Important Instructions</div>
+<div aria-atomic="true" aria-live="polite" class="visually-hidden" id="shortCutInstru" style="overflow: hidden;position: absolute;left: -99999px;height: 1px;width: 1px;">Keyboard shortcuts are available to help you navigate the assessment efficiently. You can access the list of shortcuts at any time by pressing Alt + slash.</div>
+<div aria-hidden="false" class="inst-common-content" id="commonPageInstruction" style="flex: 1; overflow: hidden; height: auto;">
+<div id="secondPagep1" style="overflow: hidden; padding-left: 8px; height: 100%;">
+<div class="cusInstText1" id="declaration-body" style="height: 100%; width: 97%; overflow: auto; padding-left: 10px; padding-top: 10px;" tabindex="0">
+<!-- Dynamic test guidelines / sectional details injected here by exam.js -->
+</div>
+</div>
+</div>
+<div aria-hidden="false" aria-label="Ready to begin" class="readyBeginFooter" role="region">
+<div id="secondPagep2" style="padding-left:15px;overflow:auto;max-height:120px">
+<div id="defaultDisclaimerDiv" style="direction: ltr;">
+<label class="" id="highlightDisclaimer" style="line-height:16px;margin-bottom: 0;padding-left: 0; cursor:pointer;">
+<span class="tb" style="vertical-align: top; float: left;"><input aria-labelledby="agreementMessageDef" id="decl-checkbox" style="margin-top:1px;float:left" tabindex="0" type="checkbox"/> </span>
+<span id="agreementMessageDef" style="width: 98%; display: block; margin-left: 1.5em;"><span class="cusInstText1" style="">I have read and understood the instructions. All computer hardware allotted to me are in proper working condition. I declare  that I am not in possession of / not wearing / not  carrying any prohibited gadget like mobile phone, bluetooth  devices  etc. /any prohibited material with me into the Examination Hall.I agree that in case of not adhering to the instructions, I shall be liable to be debarred from this Test and/or to disciplinary action, which may include ban from future Tests / Examinations</span></span>
+</label>
+</div>
+</div>
+<div align="center" class="btnsection" style="padding:10px 20px;">
+<button aria-label="Previous" class="btn btn-primary" id="PreviousInst" style="line-height: 38px; float: left;"><strong><img height="18" id="imgdetails1" src="images/Backward-25.png" width="25"/><span id="previousbtn"> Previous</span></strong></button>
+<span id="readylinkButton"><button aria-disabled="true" class="btn btn-primary btn-primary-blue" disabled="disabled" id="readylink" style="font-size:14.4px; line-height: 38px;">I am ready to begin</button></span>
+</div>
+</div>
+</div>
+<div aria-hidden="false" aria-label="user profile" class="inst-mainright" id="mainright" role="region" style="border-left: 1px solid rgb(0, 0, 0); width: 21%; height: 100%; position: relative; background:#fff;">
+<div class="instruTimeCountDiv">
+<div class="instruTimeCounter"> </div>
+</div>
+<div style="position:relative;padding:20px">
+<center><img alt="candidate Image" class="candidateImg mockCandidateImg" src="images/NewCandidateImage.jpg" style="height:100px;width:100px"/> </center>
+</div>
+<div class="candOriginalName decl-cand-name" id="name" style="font-size: 16px; color: rgb(79, 104, 135); font-weight: bold; text-align: center;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"></div>
+<div class="bluebg"></div>
+</div>
+</div>
+<footer class="inst-footer" id="footer" style="height: 22px; width: 100%; background: #4D8CCA; line-height: 22px;">
+<div class="footerContainer">
+<div class="footerText" style="text-align: center; color: #fff; font-size: 11px;">
+<span class="versionText">Version : 17.07.00</span>
+</div>
+</div>
+</footer>
+</div>
+</div>
+<!-- ── SCREEN 3: EXAM SCREEN (CLONED TCS iON) ── -->
+<div id="screen-exam" style="display:none; width:100%; height:100%;">
+<div id="wrapper">
+<div id="minwidth">
+<!-- Hamburger Contents -->
+<div aria-labelledby="menu_title_id" aria-modal="true" class="canvasmenu" id="canvasmenuid" role="dialog" style="display: none; direction: ltr;">
+<div class="hamburgerBar canvas">
+<button aria-label="close profile menu" class="hamicon hamclose" id="hamcloseid"></button>
+</div>
+<div class="menu_title">
+<span class="selection yourSelection" id="menu_title_id">Your Selection</span>
+<ul class="user_select">
+<!--li>
+                                <div class="menubx grupbx">
+                                	<i class="gb"></i>
+                                	<span>GROUP</span>
+                                </div>
+                                </li -->
+<li style="text-align: left;">
+<div class="menubx userbx selected" id="menuboxprofile" role="button" tabindex="0">
+<i class="gb"></i> <span class="profile">Profile</span>
+</div>
+</li>
+<li style="text-align: left;">
+<div class="menubx morebx" id="menuboxmore" role="button" tabindex="0">
+<i class="mp"></i> <span class="more">MORE</span>
+</div>
+</li>
+</ul>
+</div>
+<div class="menu_descp">
+<div class="sections section1" style="display: block">
+<div class="pic_box" style="direction: ltr;">
+<div class="pics pic1">
+<img class="candidateImg mockCandidateImg" height="101" src="images/NewCandidateImage.jpg" width="94"/>
+<img class="verifiedImg" height="101" src="images/dot.gif" style="display: none;" width="94"/>
+</div>
+<div class="clear"></div>
+</div>
+<div class="user_dtls">
+<div class="details mockLoginIdSpan" style="">
+<span class="loginName">Roll No</span> <span class="mockCandId">1227638723078</span>
+</div>
+<div class="details assessmentCandidateIdSpan" style="display: none">
+<span class="CandidateIdText">Candidate ID</span> <span class="candId">11111</span>
+</div>
+<div class="details hideCandNameFOrOffline" style="display: none;">
+<span class="candName">Name</span> <span class="candOrigName"></span>
+</div>
+<!-- <div class="details DOBSpan" style="display: none">
+								<span class="dobText"></span> <span class="dob"></span>
+							</div> -->
+<div class="details LoginIdSpan" style="display: none">
+<span class="loginIdText">Login ID</span> <span class="loginId"></span>
+</div>
+<div class="details EmailIdSpan" style="display: none">
+<span class="emailIdText">Email ID</span> <span class="emailId"></span>
+</div>
+<div class="details roomCaptureURL" style="display: none">
+<span class="roomCaptureURLText">Room Capture URL</span> <span class="roomCaptureURLValue"></span>
+</div>
+<!-- <div class="details ContactNumSpan" style="display: none">
+								<span class="contactNoText"></span> <span class="contactNo"></span>
+							</div> -->
+</div>
+</div>
+<div class="sections section2">
+<button aria-controls="mpopid" aria-expanded="false" aria-haspopup="dialog" class="moresections ques viewquestion_div auditlogButton QuestionPaper" id="viewQPButtonMbl" role="button" style="width: 100%;" tabindex="0">Question Paper</button>
+<button aria-controls="mpopid" aria-expanded="false" aria-haspopup="dialog" class="moresections instr auditlogButton viewInstruction" id="VIMbl" role="button" style="width: 100%;" tabindex="0">View Instructions</button>
+<button aria-controls="mpopid" aria-expanded="false" aria-haspopup="dialog" class="moresections info usefulDataDiv auditlogButton" id="usefulDataMbl" role="button" style="width: 100%;" tabindex="0">
+<span> Useful Data </span>
+</button>
+<button aria-controls="mpopid" aria-expanded="false" aria-haspopup="dialog" class="moresections auditlogButton" id="viewGrpInstruDiv" role="button" style="width: 100%; display: none;" tabindex="0">
+<span> Group Instructions </span>
+</button>
+<button aria-controls="mpopid" aria-expanded="false" aria-haspopup="dialog" class="moresections auditlogButton" id="viewSecInstruDiv" role="button" style="width: 100%; display: none;" tabindex="0">Section Instructions</button>
+<button aria-controls="mpopid" aria-expanded="false" aria-haspopup="dialog" class="moresections auditlogButton" id="viewQuesInstruDiv" role="button" style="width: 100%; display: none;" tabindex="0">
+<span> Question Instructions </span>
+</button>
+<div class="lang multilingualDropdown" style="display: none">
+<span id="mLangName">English</span> <i class=""></i>
+</div>
+<div class="langselect"><span class="mlanguageSelected" value="English">English</span></div>
+</div>
+</div>
+</div>
+<!-- Hamburger Contents -->
+<div class="headergrup">
+<div id="header" style="height: 0.666667px;">
+<div align="left" id="bannerImage" style="float: left">
+<div id="bannerImg" style="float: left"></div>
+<div align="center" id="bannerText" style="margin-top: 10px; font-weight: bold;">
+<font color="#ffffff" size="4"></font>
+</div>
+<div class="queSteps" style="display: none;">
+<div class="module module0" max="100" value="0"><span></span></div>
+</div>
+<div class="clientLogo" style="display: none"><img alt="Client Logo" class="clientLogoPath" src="images/YL.png"/></div>
+</div>
+<div class="hamburgerBar">
+<i class="hamicon"></i>
+</div>
+</div>
+<section class="commanHeaderPatch">
+<div class="subjectdetailsArea">
+<div class="subjectdetailsAreaInside">
+<h1 class="subjectDetailHead mockName">UPUMS 2021 Mock PAPER I - PCB</h1>
+<div class="profileDetailsCricle">
+<div class="timerBoxPannel ontimerRealtedBlock">
+<div class="timerContainer" id="timer_div" role="timer" tabindex="0">
+<em class="timeimg"></em>
+<div class="hrs timeBlk hrsDiv">
+<span class="timerUpdate">
+<span class="paperHrs" id="m01_hrs">01</span>
+<span>:</span>
+</span>
+<span class="sanssB" style="display:none">HRS</span>
+</div>
+<div class="hrs timeBlk minsDiv">
+<span class="timerUpdate">
+<span class="paperMins" id="min_val">51</span>
+<span>:</span>
+</span>
+<span class="timerStatic" style="display:none">MIN</span>
+</div>
+<div class="hrs timeBlk secsDiv">
+<span class="timerUpdate">
+<span class="paperSecs" id="sec01_val">54</span>
+</span>
+<span class="timerStatic" style="display:none">SEC</span>
+</div>
+</div>
+</div>
+<div classe="userName1">
+<div class="userName1"></div>
+<div class="candId1"></div>
+</div>
+<div class="userProfileDataMain">
+<button aria-label="user profile" class="userProfileBtn userProfileBtnAction">
+</button>
+<div class="userProfileDataDiv" style="display: none;">
+<label class="userName">Vishal Singh</label>
+<label class="userId">ANV12345</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div aria-label="Assessment Header" id="sub-header" role="banner">
+<div class="exam_name">
+<span aria-level="1" class="test-header" id="exam_name_h1" role="heading" style="outline:none" tabindex="-1">UPUMS 2021 Mock PAPER I - PCB</span>
+</div>
+<div class="analyse-top-bar" id="analyse-top-bar" style="display: none; align-items: center; gap: 12px; float: right; margin-top: 6px; margin-right: 260px; position: relative; z-index: 1000;">
+<label id="reattempt-toggle-label" style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 13px; color: #147eb3;">
+<input id="reattempt-switch" style="cursor: pointer; width: 16px; height: 16px;" type="checkbox"/>
+<span>Re-attempt</span>
+</label>
+<div id="reattempt-scope-container" style="display: none; align-items: center; gap: 4px;">
+<span style="font-size: 12px; color: #555;">Scope:</span>
+<select id="reattempt-scope-select" style="padding: 2px 6px; font-size: 12px; border: 1px solid #147eb3; border-radius: 3px;">
+<option value="all">All questions</option>
+<option value="wrong-unattempted">Only wrong + unattempted</option>
+</select>
+</div>
+<button class="btn btn-default" id="btn-reattempt-reset" style="display: none; padding: 3px 8px; font-size: 12px; border: 1px solid #ccc; border-radius: 3px; cursor: pointer;" type="button">Reset</button>
+<button class="btn btn-primary-save" id="btn-reattempt-finish" style="display: none; padding: 3px 10px; font-size: 12px; background: #147eb3; color: #fff; border: 1px solid #147eb3; border-radius: 3px; cursor: pointer; font-weight: 600;" type="button">Finish Re-attempt</button>
+<a class="btn btn-primary-blue" href="result.html" id="btn-back-to-results" style="padding: 3px 10px; font-size: 12px; text-decoration: none; border-radius: 3px; color: #fff; display: inline-block;">Back to Results</a>
+</div>
+<div aria-hidden="true" class="skipLink_div">
+<a class="skip-link-banner" href="https://g26.tcsion.com//OnlineAssessment/quiz.html?31636@@M211@@0@@0@@0@@0#currentQues">Skip to Current Question area</a>
+<!-- <a href="#numberpanelQues" class="skip-link" style="top: -9999px;">Skip to Question Number Panel</a> --></div>
+<div aria-hidden="false" aria-label="instruction controls" class="helpinstruction_div" role="toolbar">
+<div class="accessibilityContent" style="display: none;" title="">
+<button aria-expanded="false" aria-haspopup="true" aria-label="click to view global accessibility adjustments" class="accessabilityActions" data-bs-original-title="Accessibility Adjustments" data-bs-placement="bottom" data-bs-toggle="tooltip" type="button"><span class="accessibility-icon"></span> Accessibility </button>
+<div class="accessibilityContDiv">
+<h2 aria-level="1" class="font21" role="heading" tabindex="0">Accessibility Adjustments</h2>
+<div class="accessibilityDarkColorPalette">
+<div class="darkColorPaletteLft highContrastToggle">
+<span class="accessHeading1">Switch to</span>
+<span class="accessHeading2 changeThemeMode">Dark Mode</span>
+<div class="switchToDivBlk lightModeOn">
+<button aria-label="click to view light theme mode" class="lightIconSwitch selectedMode" role="button" tabindex="0" type="button"><em></em></button>
+<button aria-label="click to view dark theme mode" class="drakIconSwitch" role="button" tabindex="0" type="button"><em></em></button>
+</div>
+</div>
+<div class="accessibilityFontResize">
+<div class="accessibilityFontSizeLft">
+<span class="accessHeading1">Select</span>
+<span class="accessHeading2">Font Size</span>
+</div>
+<div class="accessibilityFontSizeRft">
+<button aria-label="A - font size" class="font14Px activiteClass defaultFontSize fontResizeEm multi_font_icon" data-value="fontsize_opt1" role="button" tabindex="0" type="button"><b>A</b></button>
+<button aria-label="default font size" class="font16Px fontResizeEm multi_font_icon" data-value="fontsize_opt2" role="button" tabindex="0" type="button"><b>A</b></button>
+<button aria-label="A + + font size" class="font18Px fontResizeEm multi_font_icon" data-value="fontsize_opt3" role="button" tabindex="0" type="button"><b>A</b></button>
+</div>
+</div>
+</div>
+<div class="accessibilityCursorTrailResize">
+<div class="cursorTrailResizeLft cursorTrailDisable">
+<span class="accessHeading1 changeNameDisable" role="none">Enable</span>
+<span class="accessHeading2" role="none">Cursor Trail</span>
+<div aria-label="click to change cursor trail" class="trailBlockElement" role="button" tabindex="0">
+<em></em>
+</div>
+</div>
+<div class="cursorTrailResizeRft">
+<span class="accessHeading1">Choose</span>
+<span class="accessHeading2">Cursor Size</span>
+<div class="cursorTrailDiv">
+<button aria-label="click to resize cursor mode" class="mouseResizeEm activiteClass" data-value="Cursor1" role="button" tabindex="0" type="button"><em class="resizeCursor1"></em></button>
+<button aria-label="click to resize cursor mode" class="mouseResizeEm" data-value="Cursor2" role="button" tabindex="0" type="button"><em class="resizeCursor2"></em></button>
+<button aria-label="click to resize cursor mode" class="mouseResizeEm" data-value="Cursor3" role="button" tabindex="0" type="button"><em class="resizeCursor3"></em></button>
+</div>
+</div>
+</div>
+<div class="resetButtonWrap">
+<button class="resetButton" role="button" tabindex="0">Reset to Default</button>
+</div>
+</div>
+</div>
+<div class="magnifier_class" style="display: none;" title="">
+<button class="magnify_div" id="magnify"><span class="magnify_icon"></span><span>Screen Magnifier</span>
+</button>
+</div>
+<div class="viewQuesInstruDiv" style="display: none;" title="">
+<span class="instruction_icon"> </span>
+<button aria-controls="TB_window" aria-expanded="false" aria-haspopup="dialog" class="test-instruct thickbox GrpInsQuizBtnDiv" data-for-model-dialog="Question Instructions" id="viewQuesInstru" role="button" tabindex="0">
+<span class="auditlogButton preQuesInst" id="GrpInsQuizBtn">Question Instructions</span>
+</button>
+</div>
+<div class="viewSecInstruDiv" style="display: none;" title="">
+<span class="instruction_icon"> </span>
+<button aria-controls="TB_window" aria-expanded="false" aria-haspopup="dialog" class="test-instruct thickbox SecInsQuizBtnDiv" data-for-model-dialog="Section Instructions" id="viewSecInstru" role="button" tabindex="0">
+<span class="auditlogButton preSecInst secInstruc" id="SecInsQuizBtn">Section Instructions</span>
+</button>
+</div>
+<div class="viewShortCutsDiv" style="display: none;" title="">
+<span class="shortCut_icon"> </span>
+<button aria-controls="TB_window" aria-expanded="false" aria-haspopup="dialog" class="test-instruct thickbox viewShortCutsc" data-for-model-dialog="ShortCut Tool" id="viewShortCuts" role="button" tabindex="0">
+<span class="auditlogButton shortcut" id="viewShortCutspan">ShortCuts Menu</span>
+</button>
+</div>
+<div class="viewGrpInstruDiv" style="display: none;" title="">
+<span class="instruction_icon"> </span>
+<button aria-controls="TB_window" aria-expanded="false" aria-haspopup="dialog" class="test-instruct thickbox QuesInsQuizBtnDiv" data-for-model-dialog="Group Instructions" id="viewGrpInstru" role="button" tabindex="0">
+<span class="auditlogButton preGrpInstru" id="QuesInsQuizBtn">Group Instructions</span>
+</button>
+</div>
+<div class="help_div usefulDataDiv" id="usefulDataDiv" style="display: none;">
+<span class="help_icon"></span>
+<button aria-controls="TB_window" aria-expanded="false" aria-haspopup="dialog" class="test-instruct usefulDataDiv" data-for-model-dialog="Useful Data" id="usefulDataDiv" role="button" tabindex="0">
+<span class="auditlogButton UF" id="usefulData">Useful Data</span>
+</button>
+</div>
+<div class="refdocDiv" id="refdocDiv" style="display: none;">
+<span class="instruction_icon"> </span>
+<button aria-controls="TB_window" aria-expanded="false" aria-haspopup="dialog" class="test-instruct refdocdownlDiv" data-for-model-dialog="Reference Documents" id="refdocdownlDiv" role="button" tabindex="0">
+<span class="auditlogButton" id="refdocdownl">Reference Documents</span>
+</button>
+</div>
+<div class="instruction_div">
+<span class="instruction_icon"> </span>
+<button aria-controls="TB_window" aria-expanded="false" aria-haspopup="dialog" class="test-instruct thickbox VIDiv" data-for-model-dialog="Instructions" id="VI" role="button" tabindex="0">Instructions</button>
+</div>
+<div class="viewquestion_div" id="viewQPTD">
+<span class="questionpaper_icon"></span>
+<button aria-controls="TB_window" aria-expanded="false" aria-haspopup="dialog" class="test-instruct thickbox viewQPButtonDiv" data-for-model-dialog="Question Paper" id="viewQPButton" role="button" tabindex="0">Question Paper</button>
+</div>
+</div>
+<!-- <div class="ChatWithUs_div" id="ChatWithUs_div" style="display:none;">
+							<span class="chat_icon"></span><a class=""
+								onclick="openChatPage();"><span id="chat">Chat</span></a>	
+			</div> -->
+<div class="chat-popup" id="chat-popup" style="display: none;">
+<div class="chatpop">
+<h1>Chat</h1>
+<label for="msg"><b>Message</b></label>
+<textarea id="ticket_msg" name="msg" placeholder="Type message.." required=""></textarea>
+<button class="btn" type="button">Send</button>
+<button class="btn cancel" type="button">Close</button>
+</div>
+</div>
+<div aria-hidden="false" class="time-details_new">
+<div id="showTimee" style="float: right; display: none;"><b>Time Left : <span id="timeInMins">119:41</span></b></div>
+<div id="showTimeeForOptSec" style="float: right;display:none"> </div>
+</div>
+</div>
+<!-- Sub header Tab-->
+<div aria-hidden="false" class="subheader_tab">
+<div class="grupname1 grups" id="groupsResp"><div aria-controls="groupbox2id" aria-expanded="false" aria-haspopup="true" class="grup_head" role="button" tabindex="0"> Speed Drill <div class="arw_drpdown"></div> <span class="crumb">/</span></div><i class="bx_arrow" style="display: none;"></i><div aria-label="group selection" class="grupbox2" id="groupbox2id" role="menu" style="display: none;"><div class="subbox"><div class="subjectsResp subjects" data-normgrpsec="true" id="gResp0" role="menuitem" style="pointer-events: auto;" tabindex="-1"><span>Speed Drill</span></div></div></div></div>
+<div class="grupname2 grups" id="secResp"><div aria-controls="sectionbox2id" aria-expanded="false" aria-haspopup="true" class="grup_head" role="button" tabindex="0"><div class="astrk"> * </div>Physics <div class="arw_drpdown"></div></div><i class="bx_arrow" style="display: none;"></i><div aria-label="section selection" class="grupbox2" id="sectionbox2id" role="menu" style="display: none;"><div class="subbox"><div class="subjects" id="sResp0" role="menuitem" style="pointer-events: auto;" tabindex="-1">Physics</div><div class="subjects" id="sResp1" role="menuitem" style="pointer-events: auto;" tabindex="-1">Chemistry</div><div class="subjects" id="sResp2" role="menuitem" style="pointer-events: auto;" tabindex="-1">Biology</div></div></div></div>
+<div class="hamburgerBar" id="hamburgerBarBtnid">
+<button aria-controls="canvasmenuid" aria-expanded="false" aria-haspopup="dialog" aria-label="open profile menu" class="hamicon" id="hamiconid"></button>
+</div>
+<div class="clear"></div>
+</div>
+<!-- --tools for mobile and tab start -->
+<div aria-hidden="false" class="grup_components">
+<div class="" id="mKeybrdLayt"></div>
+<div class="panel_time time-details" id="timeResp"><div class="timelabel">Time Left : </div><div class="timebx" id="timeInMins">119:41</div></div>
+<div class="panel_icons_sm">
+<div aria-label="NotePad" class="piconsm_5 picons textarea-icon-container" objid="NotePad" style="display: none;" title="Notepad"></div>
+<div aria-label="Scratch Pad" class="piconsm_6 picons scratchpad-icon-container" objid="Scratch Pad" style="display: none;" title="Scratchpad"></div>
+<div aria-label="Ruler" class="piconsm_2 picons ruler-icon-container" objid="Ruler" style="display: none;" title="Ruler"></div>
+<div aria-label="Protractor" class="piconsm_3 picons protactor-icon-container" objid="Protractor" style="display: none;" title="Protractor"></div>
+<div aria-label="Zoom In" class="piconsm_7 picons zoomin-icon-container" objid="Zoom In" style="display: none;" title="ZoomIn"></div>
+<div aria-label="Zoom Out" class="piconsm_4 picons zoomout-icon-container" objid="Zoom Out" style="display: none;" title="ZoomOut"></div>
+<div aria-label="Calculator" class="piconsm_1 picons calculator-icon-container" objid="Calculator" style="display: none;" title="calculator"></div>
+<div aria-label="Text Highlighter" class="piconsm_8 picons selectmark_tool tooltipstered" objid="Text Highlighter" style="display: none;"></div>
+<div class="clear"></div>
+</div>
+<div class="picons_scroll" style="display: none;">
+<div class="icncont">
+<span class="calc_icon iconholder"></span> <i class="smicon"></i>
+<div class="clear"></div>
+</div>
+<div class="piconsscroll_box" style="display: none;">
+<div aria-label="Calculator" class="scroll_bars calculator-icon-container" objid="Calculator" role="button" style="display: none" tabindex="0">
+<div class="sel_icon"></div>
+<span class="calc_icon"></span>Calculator
+							</div>
+<div aria-label="Ruler" class="scroll_bars ruler-icon-container" objid="Ruler" role="button" style="display: none" tabindex="0">
+<div class="sel_icon"></div>
+<span class="scale_icon"></span>Scale
+							</div>
+<div aria-label="Protractor" class="scroll_bars protactor-icon-container" objid="Protractor" role="button" style="display: none" tabindex="0">
+<div class="sel_icon"></div>
+<span class="protector_icon"></span>Protractor
+							</div>
+<div aria-label="Zoom In" class="scroll_bars zoomin-icon-container" objid="Zoom In" role="button" style="width: 160px; display: none" tabindex="0">
+<div class="sel_icon"></div>
+<span class="zoom_icon"></span>Zoom In
+							</div>
+<div aria-label="Zoom Out" class="scroll_bars zoomout-icon-container" objid="Zoom Out" role="button" style="width: 160px; display: none" tabindex="0">
+<div class="sel_icon"></div>
+<span class="zoomOut_icon"></span>Zoom Out
+							</div>
+<div aria-label="NotePad" class="scroll_bars textarea-icon-container" objid="NotePad" role="button" style="display: none" tabindex="0">
+<div class="sel_icon"></div>
+<span class="note_icon"></span>Note
+							</div>
+<div aria-label="Scratch Pad" class="scroll_bars scratchpad-icon-container" objid="Scratch Pad" role="button" style="display: none" tabindex="0">
+<div class="sel_icon"></div>
+<span class="draw_icon"></span>Draw
+							</div>
+<div aria-label="Text Highlighter" class="scroll_bars selectmark_tool tooltipstered" objid="Text Highlighter" role="button" style="display: none" tabindex="0">
+<div class="sel_icon"></div>
+<span class="highlighter_icon"></span>Highlighter
+							</div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<!-- --tools for mobile and tab ends -->
+<!-- Question Panel with Question Nos.-->
+<div class="q_tab question_area" style="right: -17px; left: 0px;">
+<div class="qarea_resp"></div>
+<div class="stngsection">
+<div class="setngico">
+<!-- <i class="seticon"></i>-->
+<button aria-controls="setngbxid" aria-expanded="false" aria-haspopup="true" aria-label="information panel toggle" class="subject_instruction_icon1" id="subject_instruction_icon1_id"></button>
+</div>
+<i class="setng_arrow" style="display: none;"></i>
+<div aria-label="exam information" class="setngbx" id="setngbxid" role="region" style="right: 4px; display: none;">
+<div class="mrks_info" id="resp_mrks_info"><span class="questionType langLabel" lang="en" style="pointer-events: auto;">Question Type: </span><span style="pointer-events: auto;"> <b>MCQ</b></span><span style="pointer-events: auto;"><span class="correctAnswer langLabel" lang="en" style="pointer-events: auto;">Marks for correct answer:</span><span style="pointer-events: auto;"> : <font style="color:green">1</font></span></span> <span style="pointer-events: auto;"><span class="negativeMarks langLabel" lang="en" style="pointer-events: auto;">Negative Marks: </span><span style="pointer-events: auto;"> : <font style="color:#A80000">0</font></span></span></div>
+<div class="filter_section">
+<div class="filter_descp clear">
+<div class="fltrs">
+<div class="answered sm_bxes answeredCount">0</div>
+<div class="type_title answeredLabel">Answered</div>
+<div class="clear"></div>
+</div>
+<div class="fltrs">
+<div class="nt_answered sm_bxes notAnsweredCount">1</div>
+<div class="type_title notAnsweredLabel">Not Answered</div>
+<div class="clear"></div>
+</div>
+<div class="fltrs mNotVisited">
+<div class="nt_visit sm_bxes notVisitedCount">32</div>
+<div class="type_title notVisitedLabel">Not Visited</div>
+<div class="clear"></div>
+</div>
+<div class="fltrs mMarkReview MarkForReviewDiv">
+<div class="mfr sm_bxes markedCount">0</div>
+<div class="type_title markedLabel">Marked for Review</div>
+<div class="clear"></div>
+</div>
+<div class="fltrs review_answer mReviewAnswered">
+<div class="mfr_ans sm_bxes markedAnsweredCount">0</div>
+<div class="type_title markedAndAnsweredLabel">Answered &amp; Marked for Review (will also be evaluated)</div>
+<div class="clear"></div>
+</div>
+<div class="fltrs review_mark mReviewMarked" style="display: none;">
+<div class="mfr_ans_eval sm_bxes markedReviewCount">0</div>
+<div class="type_title markedAndAnsweredLabel">Answered &amp; Marked for Review (will also be evaluated)</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<div class="clear"></div>
+<!-- header ends-->
+<!--Container starts-->
+<div class="Container" id="candidateConsoleId">
+<!--Center Container Starts-->
+<!---------------- group level page instruction IBA-Skinning ---------->
+<section class="groupInstrutionDataSection" style="display: none;">
+<h1 class="instructionsH1">Group Instructions</h1>
+<div class="groupInstructionsContextBlk groupInstrPopup" id="groupInstructionContextOverflow" style="max-height: 364px; min-height: 364px;">
+</div>
+</section>
+<section class="groupInstrutionDataSectionOk">
+</section>
+<!--end of group level instructions IBA-Skinning -->
+<div id="grpInstruDialogContainer" style="display: none;">
+<div aria-label="Instructions" class="preGrpInstruL" id="instruTimeDiv" role="dialog" style="display: none;" tabindex="-1">
+<div aria-level="2" class="titlepath preGrpInst" id="instructions_header_1" role="heading"><span>Group Instructions</span></div>
+<div class="instruTimeCounter" id="mobPreGrpInstru" style=""> </div>
+<div aria-label="instruction content" id="instruContentDiv" role="region" style="border-bottom: 1px solid rgb(195, 195, 193); overflow: auto; height: 524.667px;">
+<div id="instView">
+<span class="viewIn">View in :</span>  <select id="grpInst"></select>
+</div>
+<div class="preGrpinstruContent" id="InstruContent"></div>
+</div>
+<div class="buttonDiv" id="instruPrcdBtnDiv">
+<input class="btn btn-primary" id="proceedToGrp" type="button" value="Proceed"/>
+</div>
+<div aria-hidden="true" class="clear"></div>
+</div>
+<div aria-label="Candidate image" class="preGroupInstR" id="instruright" role="region" style="display: none; height: 564px;">
+<div aria-label="instruction timer" class="instruTimeCountDiv" role="timer">
+<div class="instruTimeCounter"> </div>
+</div>
+<div style="height: 107px; position: relative">
+<div style="text-align: center">
+<img align="absmiddle" alt="candidate image" class="candidateImg mockCandidateImg" height="101" src="images/NewCandidateImage.jpg" width="94"/>
+<div aria-level="2" class="candOriginalName" id="Username" role="heading" title=""></div>
+</div>
+<div class="clear"></div>
+</div>
+</div></div>
+<div id="quesInstruDialogContainer" style="display:none;">
+<div aria-label="Instructions" class="preGrpInstruL" id="quesInstruTimeDiv" role="dialog" tabindex="-1">
+<div aria-level="2" class="titlepath quesInstruc" id="quesInstru" role="heading">Question Instructions : Question No.1</div>
+<div class="instruTimeCounter" id="mobPreGrpInstru"> </div>
+<div aria-label="instruction content" id="quesInstruContentDiv" role="region" style="border-bottom: 1px solid rgb(195, 195, 193); overflow: auto; height: 524.667px;">
+<div id="quesInstView">
+<span class="viewIn">View in :</span>  <select id="quesInst"></select>
+</div>
+<div class="preGrpinstruContent" id="quesInstruContent"></div>
+</div>
+<div class="buttonDiv" id="quesInstruPrcdBtnDiv">
+<input class="btn btn-primary" id="proceedToGrpxx" type="button" value="Proceed to Next"/>
+</div>
+<div aria-hidden="true" class="clear"></div>
+</div>
+<div aria-label="Candidate image" class="preGroupInstR" id="instruright" role="region" style="display: none;">
+<div aria-label="instruction timer" class="instruTimeCountDiv" role="timer">
+<div class="instruTimeCounter"> </div>
+</div>
+<div style="height: 107px; position: relative">
+<div style="text-align: center">
+<img align="absmiddle" alt="candidate image" class="candidateImg mockCandidateImg" height="101" src="images/NewCandidateImage.jpg" width="94"/>
+<div aria-level="2" class="candOriginalName" id="Username" role="heading" title=""></div>
+</div>
+<div class="clear"></div>
+</div>
+</div></div>
+<div aria-hidden="false" id="questionContent">
+<div class="tooltipDiv" style="right: 175.333px; z-index: 9999999; left: unset; top: 317.333px; display: none;">
+<div class="tooltipText">Not Answered</div>
+</div>
+<div class="groupSectionPlaceholder">
+<h1 class="groupHead groupHeadExamLab"><div aria-controls="groupbox2id" aria-expanded="false" aria-haspopup="true" class="grup_head" role="button" tabindex="0"> Speed Drill <div class="arw_drpdown"></div> <span class="crumb">/</span></div><i class="bx_arrow" style="display: none;"></i><div aria-label="group selection" class="grupbox2" id="groupbox2id" role="menu" style="display: none;"><div class="subbox"><div class="subjectsResp subjects" data-normgrpsec="true" id="gResp0" role="menuitem" tabindex="-1"><span>Speed Drill</span></div></div></div></h1>
+<div class="groupSwiperElement"><div class="swiper-button-prev-unique2 dummyGroupLevelArrows"><em></em></div><div class="swiper swiper-containergroup5"><div class="swiper-wrapper"><div class="swiper-slide swiperSlideAuto swiper-slide-active"><button class="groupBtns sectionChangeExamLab selectedsubject" data-value="Group_0_Section_0" id="sectionId0"><span class="sectionNameTxt">Physics</span><em class="doneWithSection"></em></button></div><div class="swiper-slide swiperSlideAuto"><button class="groupBtns sectionChangeExamLab" data-value="Group_0_Section_1" id="sectionId1"><span class="sectionNameTxt">Chemistry</span><em class="doneWithSection"></em></button></div><div class="swiper-slide swiperSlideAuto"><button class="groupBtns sectionChangeExamLab" data-value="Group_0_Section_2" id="sectionId2"><span class="sectionNameTxt">Biology</span><em class="doneWithSection"></em></button></div><div class="swiper-button-next-unique2 dummyGroupLevelArrows actionLeftswiper"><em></em></div></div><div></div></div></div>
+</div>
+<div class="analyse-filter-bar" id="analyse-filter-bar" style="display: none;"></div>
+<div class="greenBgConatiner" style="display:none">
+<div class="volumeFlyOutMain">
+<button class="volumeActionToAdjust"><em></em></button>
+<div class="volumeFlyOut" style="display: none;">
+<div class="rangeSliderCustom">
+<input aria-label="Volume" class="rangeSliderCustom_Range" max="100" min="0" style="background: linear-gradient(90deg, rgb(35, 183, 230) 0%, rgb(215, 220, 223) 0.1%);" type="range" value="100"/>
+<span class="rangeSliderCustom_Value" style=" width: 0px; height: 0px; display: inline-block; font-size: 0px; margin-left: 0px;"></span>
+<span class="volIcon"><em></em></span>
+</div>
+</div>
+</div>
+<div class="fontResizeContainer">
+<button class="fontResizeToAdjust">A+</button>
+<div class="fontResizeFlyOut" style="display: none;">
+<div class="fontResizeDefault">
+<h4 class="fontResizeValue">Default</h4>
+<div class="actionfontresize">
+<button class="" data-index-number="0%" data-value="Small"><em></em></button>
+<button class="" data-index-number="25%" data-value="Default"><em></em></button>
+<button class="" data-index-number="50%" data-value="Medium"><em></em></button>
+<button class="" data-index-number="75%" data-value="Large"><em></em></button>
+<div class="clear"></div>
+<em class="resizeProgress" style="width:25%;"></em>
+<em class="selectedResize" style="left: 25%;"></em>
+</div>
+</div>
+</div>
+</div>
+<h1>UPUMS 2021 Mock PAPER I - PCB</h1>
+<span class="barCodeValueTop">11111</span>
+</div>
+<div class="profile-grouping-section">
+<div class="Lft_Section column" id="col1">
+<div class="nav-container">
+<div aria-label="Question Groups" class="group-panel" role="navigation">
+<div aria-disabled="true" aria-hidden="true" aria-label="scroll left" class="group-arrow-left-disabled" role="button" style="display: none;"></div>
+<div aria-label="group" id="groups" role="tablist"><div class="allSections currentSectionSelected" id="g0" role="tab"><span class="groupName">Speed Drill</span></div></div>
+</div>
+<div aria-label="Question Groups" class="group-panel-mobile" role="navigation">
+<div aria-disabled="true" aria-label="scroll right" class="group-arrow-right-disabled" role="button" style="display: none;"></div>
+</div>
+<div aria-label="Additional Tools" class="components-section additionalTools" id="components-section-id" role="toolbar" style="">
+<div class="group-arrow-right-disabled" style="display: none;"></div>
+<div class="component-icon-container textarea-icon-container-new" style="display: none;">
+<div>
+<button align="center" aria-controls="dragNotePadDiv" aria-expanded="false" aria-haspopup="dialog" aria-label="NotePad" class="component-icon-container-btn textarea-icon-container tipIcon" id="textarea-icon-container-id" objid="NotePad">
+<span class="icon-1"></span>
+</button>
+</div>
+<div aria-describedby="notepad-instructions" aria-label="note pad" aria-modal="false" class="textarea-div ui-draggable" id="dragNotePadDiv" role="dialog" style="display: none;" tabindex="0">
+<div class="toolModal"><div class="modalBlueHeader ui-draggable-handle" id="dragNotePad" style="width: 100%; height: 25px;"></div>
+<div class="firstElementDiv" id="notPadClose">
+<button aria-label="Close" class="textarea_close firstelement tipIcon" id="closeButton" objid="Close">X</button>
+</div>
+<textarea data-gramm="false" data-gramm_editor="false" id="texteditor" spellcheck="false"></textarea>
+<div style="position: relative;">
+<span class="autoSaveMsg" id="autoSave" style="background-color: #38aae9; color: var(--white); font-size: 14px; padding: 5px 12px; border-radius: 40px; width: 100px; text-align: center; position: absolute; bottom: 15px; left: calc(50% - 50px); display: none;">Auto
+		                Saved</span>
+</div>
+<div align="center" class="lastElementDiv" id="notPadClear">
+<div aria-label="clear" class="clear-button-textarea clearTxt lastelement" id="clear-textarea" role="button" tabindex="0">Clear</div>
+</div></div>
+</div>
+</div>
+<div class="component-icon-container scratchpad-icon-container-new" style="display: none;">
+<div>
+<button align="center" aria-controls="scratch-pad-container-id" aria-expanded="false" aria-haspopup="dialog" aria-label="Scratch Pad" class="component-icon-container-btn scratchpad-icon-container tipIcon" id="scratchpad-icon-container-id" objid="Scratch Pad">
+<span class="icon-2"></span>
+</button>
+</div>
+<div aria-label="scratch pad" aria-modal="false" class="scratch-pad-container" id="scratch-pad-container-id" role="dialog" style="z-index: 9999; display: none;" tabindex="-1">
+<div class="toolModal"><div class="firstElementDiv">
+<button aria-label="Close" class="scratch-pad-close firstelement tipIcon" id="closeButton_scratchpad" objid="Close">X</button>
+</div>
+<div class="tools" id="tools_sp_id">
+<ul aria-label="Scratchpad Tools" role="toolbar">
+<li style="text-align: left;"><a class="clickToSelectMarker" data-color="#000000" data-tool="marker" href="https://g26.tcsion.com//OnlineAssessment/quiz.html?31636@@M211@@0@@0@@0@@0#simple_sketch" role="button">Marker</a></li>
+</ul>
+</div>
+<canvas height="300" id="simple_sketch" width="800"></canvas></div>
+</div>
+</div>
+<div class="component-icon-container ruler-icon-container-new" style="display: none;">
+<div>
+<button align="center" aria-controls="ruler-div-id" aria-expanded="false" aria-haspopup="dialog" aria-label="Ruler" class="component-icon-container-btn ruler-icon-container tipIcon" id="ruler-icon-container-id" objid="Ruler">
+<span class="icon-3"></span>
+</button>
+</div>
+<div aria-describedby="ruler-instructions" aria-label="ruler" aria-modal="false" class="ruler-div" id="ruler-div-id" role="group" style="display: none;" tabindex="0">
+<div class="toolModal">
+<div id="ruler">
+<div class="firstElementDiv lastElementDiv" id="rulerCloseDiv">
+<button aria-label="Close" class="ruler_close firstelement lastelement tipIcon" id="rulerClose" objid="Close">X</button>
+</div>
+<img id="rulerid" src="images/dot.gif"/>
+</div></div>
+</div>
+</div>
+<div class="component-icon-container protactor-icon-container-new" style="display: none;">
+<div>
+<button align="center" aria-controls="protactor-div-id" aria-expanded="false" aria-haspopup="dialog" aria-label="Protractor" class="component-icon-container-btn protactor-icon-container tipIcon" id="protactor-icon-container-id" objid="Protractor">
+<span class="icon-4"></span>
+</button>
+</div>
+<div aria-describedby="protractor-instructions" aria-label="protractor" aria-modal="false" class="protactor-div" id="protactor-div-id" role="group" style="display: none;" tabindex="0">
+<div class="toolModal">
+<div id="protactor">
+<div class="firstElementDiv lastElementDiv" id="protactorCloseDiv">
+<button aria-label="close protactor" class="protactor_close firstelement lastelement tipIcon" id="protactorClose" objid="Close">X</button>
+</div>
+<img id="protactorid" src="images/1.png"/>
+</div></div>
+</div>
+</div>
+<div class="component-icon-container selectmark_tool-new" style="display: none;">
+<div align="center">
+<button aria-label="Text Highlighter" aria-pressed="false" class="component-icon-container-btn selectmark_tool tooltipstered tipIcon" id="selectmark_tool-id" objid="Text Highlighter">
+<span class="selectmark selectmarkDefault"></span>
+</button>
+</div>
+</div>
+<div class="component-icon-container zoom-icon-container-new" style="display: none;">
+<div align="center">
+<button aria-label="zoom" aria-pressed="false" class="component-icon-container-btn zoom-icon-container tipIcon" id="zoom-icon-container-id-1" title="Zoom">
+<span class="icon-5"></span>
+</button>
+</div>
+</div>
+<div class="component-icon-container zoomin-icon-container-new" style="display: none;">
+<div align="center" class="zoominCursor">
+<button aria-label="Zoom In" aria-pressed="false" class="component-icon-container-btn zoomin-icon-container tipIcon" id="zoomin-icon-container-id" objid="Zoom In">
+<span class="icon-6"></span>
+</button>
+</div>
+</div>
+<div class="component-icon-container zoomout-icon-container-new" style="display: none;">
+<div align="center" class="zoomoutCursor disableCursor">
+<button aria-label="Zoom Out" aria-pressed="false" class="component-icon-container-btn zoomout-icon-container tipIcon" objid="Zoom Out">
+<span class="icon-9"></span>
+</button>
+</div>
+</div>
+<div class="component-icon-container calculator-icon-container-new" style="display: none;">
+<div align="center">
+<button aria-controls="keyPad" aria-expanded="false" aria-haspopup="dialog" aria-label="Calculator" class="component-icon-container-btn calculator-icon-container tipIcon" id="calculator-icon-container-id" objid="Calculator" style="display: none;">
+<span class="icon-0"></span>
+</button>
+</div>
+<div id="loadCalc" style="display: none; position: fixed; z-index: 999; padding-top: 1%;"></div>
+</div>
+</div>
+</div>
+<div class="section-timepanel">
+<div class="section-details" id="sectionsField">
+<span aria-level="2" class="sect" role="heading"><b>Sections</b></span><span id="showOptionalSecSummary" style="display: none"><b>[Attempt any <span id="maxOptSec"></span> of the <span id="noOptSec"></span> optional sections. Please click on the Check Box to attempt the section.]</b></span>
+</div>
+<div aria-hidden="true" class="time-details">
+<div id="showTime" style="float: right;"><b class="langLabel">Time Left : <span id="timeInMins">119:41</span></b></div>
+<div id="showTimeForOptSec" style="float: right;display:none"> </div>
+</div>
+</div>
+<div class="subject-selection" role="tabpanel" style="direction: ltr; float: left;">
+<div aria-hidden="true" aria-label="scroll left" class="subject-arrow-left-disabled" role="button" style="display: none;"></div>
+<div aria-label="section" id="sections" role="tablist"><div class="subject-name selectedsubject" id="s0" role="tab"><span class="sectionName">Speed Drill</span></div></div>
+</div>
+<div class="subject-section-rightarrow" style="display: none;">
+<div aria-hidden="true" aria-label="scroll right" class="subject-arrow-right-disabled" role="button" style="display: none;"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div aria-hidden="true" class="Rght_Section column" id="col2" role="region">
+<div aria-controls="courseInfoPop_id" aria-expanded="false" aria-haspopup="dialog" aria-labelledby="Username" id="User_Hldr" role="button" style="border-left: 1px solid rgb(195, 195, 193);">
+<div class="singleImageDiv">
+<div class="profile_image">
+<img align="absmiddle" alt="candidate image" class="candidateImg mockCandidateImg" height="101" src="images/NewCandidateImage.jpg" width="94"/>
+</div>
+<div class="profile_details">
+<div aria-level="2" class="candOriginalName" id="Username" role="heading" title=""></div>
+<!--<div id="viewProButton"><a id = "VPT" class="viewProfile auditlogButton thickbox" onclick="showModule('profileDiv');activeLink(this.id)">View Profile</a></div>-->
+</div>
+</div>
+<div class="verificationImagesDiv" style="display: none;">
+<div class="leftImage" style="width: 48%;margin: 1%;cursor:pointer;">
+<img align="absmiddle" alt="candidate image" class="candidateImg mockCandidateImg" height="85" src="images/NewCandidateImage.jpg" width="94"/>
+</div>
+<div class="rightImage" style="width: 48%; margin: 1%; cursor: pointer; right: 60px;">
+<img align="absmiddle" alt="candidate image" class="verifiedImg" height="85" src="images/dot.gif" style="display: none;" width="94"/>
+</div>
+<div aria-level="2" class="candOriginalName" id="Username" role="heading" title=""></div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<!--Center Container Ends-->
+<div class="question_description_number_panel" id="rightDivision">
+<div class="Rght_Section column" id="col2" style="right: 0px; position: absolute; top: 145.667px;">
+<div class="collapsebel_panel" style="border-left: 2px solid rgb(0, 0, 0); border-right-width: medium; border-right-style: none; border-right-color: currentcolor;">
+<span aria-label="Collapse Question Number Panel" class="collapse_icon tipIcon" objid="Collapse Question No. Panel" role="button" tabindex="0"></span>
+<div aria-label="question status legend" class="diff_type_notation_area_outer" role="complementary">
+<div class="diff_type_notation_area_inner" style="padding-left: 8px;">
+<div class="notation_type_description fontSizeAccessibility" role="list">
+<div class="notation_typeDiv leftdiv_notation" role="listitem">
+<span class="answered answeredCount" id="">0</span> <span class="type_title answeredLabel langLabel longtext-hide" id="" lang="en">Answered</span>
+</div>
+<div class="notation_typeDiv" role="listitem">
+<span class="not_answered notAnsweredCount" id="">1</span> <span class="type_title notAnsweredLabel langLabel longtext-hide" id="" lang="en">Not Answered</span>
+</div>
+<div class="clear"></div>
+<div class="notation_typeDiv leftdiv_notation" role="listitem">
+<span class="not_visited notVisitedCount" id="">32</span> <span class="type_title notVisitedLabel langLabel longtext-hide" id="" lang="en">Not Visited</span>
+</div>
+<div class="notation_typeDiv MarkForReviewDiv" role="listitem">
+<span class="review markedCount" id="">0</span> <span class="type_title markedLabel langLabel longtext-hide" id="" lang="en">Marked for Review</span>
+</div>
+<div class="clear"></div>
+<div class="notation_typeDiv answered_review_container review_mark" id="" role="listitem" style="display: none;">
+<span class="review_marked markedReviewCount" id="">0</span>
+<span class="type_title langLabel markedAndAnsweredLabel" id="" lang="en">Answered &amp; Marked for Review (will also be evaluated)</span>
+</div>
+<div class="notation_typeDiv answered_review_container review_answer" id="" role="listitem">
+<span class="review_answered markedAnsweredCount" id="">0</span>
+<span class="type_title langLabel markedAndAnsweredLabel" id="" lang="en">Answered &amp; Marked for Review (will also be evaluated)</span>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="rightSectionDiv" id="rightSectionDiv1" style="direction: ltr;">
+<div class="content"></div>
+</div>
+<div aria-label="section Physics" class="rightSectionDiv" id="rightSectionDiv2" role="navigation" style="direction: ltr;">
+<div aria-level="2" class="header" role="heading" style="text-align: left;">
+										 <span class="viewSection"><b id="Physics" title="Physics">Physics</b> </span>
+</div>
+<div class="palette-filter-box" id="analyse-filter-container" style="display: none;">
+<select aria-label="Filter Questions" class="palette-filter-select" id="analyse-filter-select">
+<option value="all">All</option>
+<option value="correct">Correct</option>
+<option value="wrong">Wrong</option>
+<option value="skipped">Skipped</option>
+<option value="unseen">Unseen</option>
+<option value="marked">Marked for Review</option>
+<option value="slow">Slow</option>
+</select>
+<span class="palette-filter-count" id="analyse-filter-count"></span>
+</div>
+<div aria-level="3" class="subheader" id="chooseQuestion" role="heading" style="text-align: left;">Choose a Question</div>
+<div class="content nano has-scrollbar" id="question_area" style="height: 193.333px;">
+<div class="question_area nano-content" id="num_panel_box" style="right: -17px; left: 0px;" tabindex="-1">
+<div aria-labelledby="chooseQuestion" class="numberpanelQues" id="numberpanelQues" role="tablist"></div>
+</div>
+<div class="nano-pane" style="right: 0px;"><div class="nano-slider" style="height: 73px; transform: translate(0px, 0px);"></div></div></div>
+</div>
+<div aria-label="typing info panel" class="rightContainerText" id="typingInstDiv" role="region" style="display: none; overflow: auto" tabindex="-1">
+<div class="viewSection">
+<span id="viewingSect">You are viewing</span> <b id="Physics" title="Physics">Physics</b> <!-- <span
+											class="sect"></span> -->
+</div>
+<div id="dataDisplayDiv" style="display: none"></div>
+<div class="question_area1">
+<div class="question_area1">
+<div aria-label="word count details" aria-live="polite" role="group">
+<div class="keyStrokesCount" role="presentation">
+<span class="keyStrokesCountTd">Keystrokes Count</span><span>:</span><span class="totalKeyStrokesCount"></span>
+</div>
+<div class="errorCount" role="presentation">
+<span class="errorCountTd">Error Count</span><span>:</span><span class="errorCountValue"></span>
+</div>
+<div class="backspaceCount" role="presentation">
+<span class="backspaceCountTd">Backspace Count</span><span>:</span><span class="backspaceCountValue"></span>
+</div>
+<div class="totalCount" role="presentation">
+<span class="totalWordCount">Total Word Count</span><span>:</span><span class="totalWordCountVal"></span>
+</div>
+<div class="typedCount" role="presentation">
+<span class="typedWordCount">Typed Word Count</span><span>:</span><span class="typedWordCountVal"></span>
+</div>
+<div class="remainingCount" role="presentation">
+<span class="remainingWordCount textRight">Pending Word Count</span><span>:</span><span class="remainingWordCountVal"></span>
+</div>
+</div>
+<br/>
+<div aria-level="2" id="typingInstruSpan" role="heading">
+<b>Instructions</b>
+</div>
+<div id="restrictedInstr" style="margin-top: 10px;">
+<div>
+<!-- <span style="vertical-align:top"><b>1.</b></span> -->
+<span> </span><span id="resInstru1">Kindly type the highlighted characters shown on the screen to proceed further.</span>
+</div>
+<div>
+<!-- <span style="vertical-align:top"><b>2.</b></span> -->
+<span> </span><span id="resInstru2">Kindly note, it is not possible for you to edit the texts that you have typed.</span>
+</div>
+<div>
+<!-- <span style="vertical-align:top"><b>3.</b></span> -->
+<span> </span><span id="resInstru3">Kindly note, it is mandatory for you to type the entire text contents to submit.</span>
+</div>
+<div>
+<!-- <span style="vertical-align:top"><b>4.</b></span> -->
+<span> </span><span id="resInstru4">Upon timeout, the system will automatically save all your responses.</span>
+</div>
+</div>
+<div id="unrestrictedInstr" style="display: none; margin-top: 10px">
+<div>
+<!-- <span style="vertical-align:top"><b>1.</b></span> -->
+<span> </span><span id="unresInstru1">Kindly type the highlighted word to proceed further.</span>
+</div>
+<div class="unresInstru2">
+<!-- <span style="vertical-align:top"><b>2.</b></span> -->
+<span> </span><span id="unresInstru2">Kindly note, you can edit the text contents that you have typed.</span>
+</div>
+<div class="unresInstru3">
+<!-- <span style="vertical-align:top"><b>3.</b></span> -->
+<span> </span><span id="unresInstru3">Correct/Wrong words turn Green/Red respectively.</span>
+</div>
+<div>
+<!-- <span style="vertical-align:top"><b>4.</b></span> -->
+<span> </span><span id="unresInstru4">Kindly note, it is mandatory for you to type the entire text contents to submit.</span>
+</div>
+<div>
+<!-- <span style="vertical-align:top"><b>5.</b></span> -->
+<span> </span><span id="unresInstru5">Upon timeout, the system will automatically save all your responses.</span>
+</div>
+</div>
+<div id="stanographyInstr" style="display: none; margin-top: 10px">
+<div>
+<!-- <span><b>1.</b></span> -->
+<span> </span><span id="stanographyInstr1">Kindly note, you can edit the text contents that you have typed.</span>
+</div>
+<div>
+<!-- <span><b>2.</b></span> -->
+<span> </span><span id="stanographyInstr2">Kindly note, it is mandatory for you to type the entire text contents to submit.</span>
+</div>
+<div>
+<!-- <span><b>3.</b></span> -->
+<span> </span><span id="stanographyInstr3">Upon timeout, the system will automatically save all your responses.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="Questn_Area" id="Questn_Area" role="main" style="outline:none;" tabindex="-1">
+<span aria-label="Show Question Number Panel" class="expand_icon tipIcon" objid="Show Question Number Panel" role="button" style="display: none;" tabindex="0"></span>
+<!--<div class="Questn_Innr_Div " >
+	<div id="questionCont" >-->
+<div aria-label="question area" id="currentQues" role="tabpanel" style="position: relative; width: 1030px; height: 395.667px;" tabindex="0"><div class="questionTypeCont displayQuestionTypeContent"><span aria-level="2" class="questiontype-details" id="questiontype-details_id" role="heading"><span class="questionType langLabel" lang="en">Question Type: </span>MCQ</span><span class="questiontype-markpanel"><span aria-hidden="true" class="marking-details"><span class="correctAnswer langLabel" lang="en">Marks for correct answer:</span> <font style="color:green">1</font><span class="negativeMarksSep"> |</span><span class="negativeMarks langLabel" lang="en">Negative Marks: </span><font style="color:#A80000">0</font></span></span></div><div id="Questn_Innr_Div_section" style="height: 0px;"><div id="Subjt_Div"></div><div id="Subdetail_Div"><div style="float:right;margin-right:5px;"></div></div></div><div class="uniqueQuesOuterDiv watermark quesOuterDiv2" id="quesOuterDiv" style="display: block; height: auto; overflow: hidden; position: relative;"><div class="leftDiv" lang="en" style="width: 99.9%; text-align: left; height: 347px; float: left;"><div align="right" style="float:right;"><a aria-label="Scroll Down" class="tipIcon" id="scrollToBottom" objid="Scroll Down" role="button" style="display: none;" tabindex="0"><img align="right" alt="" height="28" src="images/Down.png" style="" width="28"/></a></div><div aria-level="3" class="divHeader" id="divHeader_id" role="heading" tabindex="0"><b><span aria-label="question number" class="questionNumber langLabel" lang="en">Question No</span>. 1</b></div><div class="Ans_Area" id="quesAnsContent"></div><div align="right" style="float:right;clear:both"><a aria-label="Scroll Up" class="tipIcon" id="scrollToTop" objid="Scroll Up" role="button" style="display: none;" tabindex="0"><img alt="" height="30" src="images/Up.png" style="" width="30"/></a></div></div></div></div>
+<div aria-label="answer submission controls" class="buttons-div" id="buttons-div-id" role="region" style="">
+<div class="Bttn_Area" id="Bttn_Area2">
+<div class="other_buttoncontainerGrp" style="position: fixed; width: 50%; z-index: 10; display: none;">
+<span class="bc_footer" id="bc_footerGrp" style="display:none">
+<div class="volumeControl">
+<button aria-controls="volumeDivId" aria-expanded="false" aria-haspopup="dialog" aria-label="Volume Control" class="footerButton volumeIcon tipIcon" objid="Volume Control"></button>
+<div aria-labelledby="popHeadingVolId" class="popMain volumeDiv" role="dialog">
+<h2 class="popHeading" id="popHeadingVolId"><span class="accessVolumeCtrl">Volume Control</span></h2> <button class="closePop"></button>
+<div class="popContainer">
+<button aria-label="Volume Decrease" class="leftVolume tipIcon" id="vol_decrease_id" objid="Volume Decrease"></button>
+<div class="volumeDiv">
+<ul>
+<li class="volumeBar volumeBar1 height8 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar2 height12 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar3 height18 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar4 height24 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar5 height30 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar6 height36 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar7 height42 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar8 height48 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar9 height54 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar10 height60 addedVol" style="text-align: left;">
+</li></li></li></li></li></li></li></li></li></li></ul>
+</div>
+<button aria-label="Volume Increase" class="rightVolume tipIcon" id="vol_increase_id" objid="Volume Increase"></button>
+</div>
+</div>
+</div>
+<div class="highlightTool" objid="Text Highlighter">
+<!--  <button class="footerButton highlightIcon selectmark_tool"></button>-->
+<div aria-label="Text Highlighter" class="component-icon-container selectmark_tool" objid="Text Highlighter" style="display: none;">
+<div align="center">
+<span class="selectmark selectmarkDefault tipIcon" objid="Text Highlighter" role="button" tabindex="0"></span>
+</div>
+</div>
+</div>
+<div class="accessTool">
+<button aria-controls="accessToolDivId" aria-expanded="false" aria-label="Accessibility Tools" class="footerButton accessToolIcon auditlogButton" id="accessToolIcon" objid="Accessibility Tools" value="Accessibility Tools"></button>
+<div aria-labelledby="popHeadingId" aria-modal="false" class="popMain accessToolDiv" id="accessToolDivId" role="dialog">
+<h2 class="popHeading" id="popHeadingId"><span class="accessToolheader">Accessibility Tools</span></h2> <button aria-label="close" class="closePop tipIcon" objid="Close"></button>
+<div class="popContainer">
+<div aria-labelledby="accessibilityColorContrast" class="colorContrast" role="group" style="display: none;">
+<h3><span></span> <b class="accessCC" id="accessibilityColorContrast"> Colour Contrast</b></h3>
+<button aria-label="white" class="contrastBtn contrast1 applied">Aa</button>
+<button aria-label="light pink" class="contrastBtn contrast2">Aa</button>
+<button aria-label="pale lime" class="contrastBtn contrast3">Aa</button>
+<button aria-label="light lavender" class="contrastBtn contrast4">Aa</button>
+<button aria-label="golden brown" class="contrastBtn contrast5">Aa</button>
+<button aria-label="light purple" class="contrastBtn contrast6">Aa</button>
+<button aria-label="light lime" class="contrastBtn contrast7">Aa</button>
+<button aria-label="light teal" class="contrastBtn contrast8">Aa</button>
+<div class="clearfix"></div>
+</div>
+<div aria-labelledby="accessibilityColorOverlay" class="colorOverlay" role="group" style="display: none;">
+<h3><span></span> <b class="accessCO" id="accessibilityColorOverlay"> Colour Overlay</b></h3>
+<button aria-label="white" class="overlayBtn overlay1 applied">Aa</button>
+<button aria-label="light green" class="overlayBtn overlay2">Aa</button>
+<button aria-label="light cyan" class="overlayBtn overlay3">Aa</button>
+<button aria-label="beige" class="overlayBtn overlay4">Aa</button>
+<button aria-label="light violet" class="overlayBtn overlay5">Aa</button>
+<button aria-label="pale yellow" class="overlayBtn overlay6">Aa</button>
+<div class="clearfix"></div>
+</div>
+<div aria-labelledby="accessibilityTextSize" class="textSize" role="group">
+<h3><span></span> <b class="accessTS" id="accessibilityTextSize"> Text Size</b></h3>
+<button aria-label="small" class="fontBtn fontSmall tipIcon" objid="Small">Aa</button>
+<button aria-label="regular" class="fontBtn fontRegular tipIcon applied" objid="Regular">Aa</button>
+<button aria-label="medium" class="fontBtn fontMedium tipIcon" objid="Medium">Aa</button>
+<button aria-label="large" class="fontBtn fontLarge tipIcon" objid="Large">Aa</button>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</span>
+<input aria-describedby="review-ans" class="normalBtn btn tempBtnClass btn-primary auditlog underreviewGrp" id="underreviewGrp" style="margin-left: 1%;" tabindex="0" type="button" value="Mark for Review &amp; Next"/> <input class="normalBtn btn tempBtnClass btn-primary auditlog clearResponseGrp" id="clearResponseGrp" style="margin-left: 2px; margin-right: 2px;" tabindex="0" type="button" value="Clear Response"/>
+<input class="btn btn-primary tempBtnClass reportissues" id="reportissue" style="display:none;
+										 margin-left: 1%" tabindex="0" type="button" value="Report as issue"/>
+</div>
+<div class="other_buttoncontainer" style="position:fixed; width:50%;z-index: 10;">
+<span class="bc_footer" id="bc_footer" role="toolbar" style="display:none">
+<div class="volumeControl" title="">
+<button aria-controls="volumeDivId" aria-expanded="false" aria-haspopup="dialog" aria-label="Volume Control" class="footerButton volumeIcon tipIcon" objid="Volume Control"></button>
+<div aria-labelledby="popHeadingVolId" class="popMain volumeDiv" id="volumeDivId" role="dialog">
+<h2 class="popHeading" id="popHeadingVolId">Volume Control </h2><button aria-label="close" class="closePop tipIcon" objid="Close"></button>
+<div class="popContainer">
+<button aria-label="Volume Decrease" class="leftVolume tipIcon" id="vol_decrease_id" objid="Volume Decrease"></button>
+<div class="volumeDiv">
+<ul>
+<li class="volumeBar volumeBar1 height8 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar2 height12 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar3 height18 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar4 height24 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar5 height30 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar6 height36 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar7 height42 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar8 height48 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar9 height54 addedVol" style="text-align: left;">
+<li class="volumeBar volumeBar10 height60 addedVol" style="text-align: left;">
+</li></li></li></li></li></li></li></li></li></li></ul>
+</div>
+<button aria-label="Volume Increase" class="rightVolume tipIcon" id="vol_increase_id" objid="Volume Increase"></button>
+</div>
+</div>
+</div>
+<div class="highlightTool" objid="Text Highlighter">
+<!--  <button class="footerButton highlightIcon selectmark_tool"></button>-->
+<div aria-label="Text Highlighter" class="component-icon-container selectmark_tool tooltipstered" objid="Text Highlighter" style="display: none;">
+<div align="center">
+<span class="selectmark selectmarkDefault tipIcon" objid="Text Highlighter" role="button" tabindex="0"></span>
+</div>
+</div>
+</div>
+<div class="accessTool">
+<button aria-controls="accessToolDivId" aria-expanded="false" aria-label="Accessibility Tools" class="footerButton accessToolIcon auditlogButton tipIcon" id="accessToolIcon" objid="Accessibility Tools" value="Accessibility Tools"></button>
+<div aria-labelledby="popHeadingId" aria-modal="false" class="popMain accessToolDiv" id="accessToolDivId" role="dialog">
+<h2 class="popHeading" id="popHeadingId">Accessibility Tools </h2><button aria-label="close" class="closePop tipIcon" objid="Close"></button>
+<div class="popContainer">
+<div aria-labelledby="accessibilityColorContrast" class="colorContrast" role="group" style="display: none;">
+<h3><span></span><b id="accessibilityColorContrast"> Colour Contrast</b></h3>
+<button aria-label="white" class="contrastBtn contrast1 applied">Aa</button>
+<button aria-label="light pink" class="contrastBtn contrast2">Aa</button>
+<button aria-label="pale lime" class="contrastBtn contrast3">Aa</button>
+<button aria-label="light lavender" class="contrastBtn contrast4">Aa</button>
+<button aria-label="golden brown" class="contrastBtn contrast5">Aa</button>
+<button aria-label="light purple" class="contrastBtn contrast6">Aa</button>
+<button aria-label="light lime" class="contrastBtn contrast7">Aa</button>
+<button aria-label="light teal" class="contrastBtn contrast8">Aa</button>
+<div class="clearfix"></div>
+</div>
+<div aria-labelledby="accessibilityColorOverlay" class="colorOverlay" role="group" style="display: none;">
+<h3><span></span> <b id="accessibilityColorOverlay"> Colour Overlay</b></h3>
+<button aria-label="white" class="overlayBtn overlay1 applied">Aa</button>
+<button aria-label="light green" class="overlayBtn overlay2">Aa</button>
+<button aria-label="light cyan" class="overlayBtn overlay3">Aa</button>
+<button aria-label="beige" class="overlayBtn overlay4">Aa</button>
+<button aria-label="light violet" class="overlayBtn overlay5">Aa</button>
+<button aria-label="pale yellow" class="overlayBtn overlay6">Aa</button>
+<div class="clearfix"></div>
+</div>
+<div aria-labelledby="accessibilityTextSize" class="textSize" role="group">
+<h3><span></span> <b id="accessibilityTextSize"> Text Size </b></h3>
+<button aria-label="small" class="fontBtn fontSmall tipIcon" objid="Small">Aa</button>
+<button aria-label="regular" class="fontBtn fontRegular tipIcon applied" objid="Regular">Aa</button>
+<button aria-label="medium" class="fontBtn fontMedium tipIcon" objid="Medium">Aa</button>
+<button aria-label="large" class="fontBtn fontLarge tipIcon" objid="Large">Aa</button>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<!--       <div class="helpTool">
+                <button class="footerButton helpIcon" data-tooltip="tooltip" title="Help"></button>
+                <div class="popMain helpDiv">
+                    <h2 class="popHeading">Help <button class="closePop"></button></h2>
+                    <div class="popContainer">
+                        <div class="helpList howTakeTest"><span></span> <a href="Javascript:void(0)">How to take this test?</a></div>
+                        <div class="helpList somethingWrong"><span></span> <a href="Javascript:void(0)">Ask for help</a></div>
+                        <div class="studentDetails">
+                            <span class="stuIcon"></span>
+                            <div class="studentInfo">
+                                <label>Name</label>
+                                <p>Amaya Johnson</p>
+                                <label>Student ID</label>
+                                <p>098765</p>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+-->
+</span>
+<div class="bccopyright" style="display:none;">Â© 2022 British Council</div>
+<input aria-describedby="review-ans" class="normalBtn btn tempBtnClass btn-primary auditlog underreview" id="underreview" style="margin-left: 1%;" tabindex="0" type="button" value="Mark for Review &amp; Next"/> <input class="normalBtn tempBtnClass btn btn-primary auditlog clearResponse" id="clearResponse" style="" tabindex="0" type="button" value="Clear Response"/>
+<input class="btn btn-primary auditlog" id="ChatWithUs_div" style="display: none;" tabindex="0" type="button" value="chat"/>
+<input class="btn tempBtnClass btn-primary reportissues" id="reportissue" style="display:none;
+										 margin-left: 1%" tabindex="0" type="button" value="Report as issue"/>
+<!--<a class="btn btn-primary mark_irrelevant" id="reportissue" href="#nogo" ><span>Mark as Irrelevant</span></a> --->
+<!-- <input type="button" id="clearResponseGroup" onclick = "cnfPop('ClearPopup')" class="groupBtn btn btn-primary auditlog clearResponseGroup" value="" style="display:none;margin-left:5px;"/>  -->
+<input class="progrmngBtn tempBtnClass btn btn-primary auditlog compileCodeBtn" id="compileCodeBtn" style="display: none; margin-left: 1%" tabindex="0" type="button" value="Compile"/> <input class="progrmngBtn tempBtnClass btn btn-primary btn-primary-blue btnEnabled auditlog submitCodeBtn" id="submitCodeBtn" style="display: none" tabindex="0" type="button" value="Submit Code"/>
+</div>
+<div class="save_buttoncontainer" style="margin-right: 255px; margin-left: 1px;">
+<input class="tempBtnClass langLabel progrmngBtn btn btn-primary auditlog reset" id="reset" lang="en" style="display: none;" type="button" value="Reset"/> <input class="progrmngBtn langLabel tempBtnClass btn btn-primary auditlogSaveAndNext auditlog saveProgram" id="saveProgram" lang="en" style="display: none" type="button" value="Next"/> <input class="tempBtnClass langLabel btn btn-primary auditlog previousBtnGroup" id="previousBtnGroup" lang="en" style="display: none; pointer-events: none; opacity: 0.5;" type="button" value="Previous"/> <input class="tempBtnClass langLabel btn btn-primary auditlog previousBtn btnEnabled" id="previousBtn" lang="en" style="display: none; pointer-events: none; opacity: 0.5;" type="button" value="Previous"/> <input class="btn btn-primary btnEnabled" id="btnAnalyseNext" style="display: none; margin-left: 5px;" type="button" value="Next"/> <a class="btn btn-primary btnEnabled" href="result.html" id="btnAnalyseBackResult" style="display: none; margin-left: 5px; text-decoration: none; line-height: 37px; padding: 0 14px;">Back to Results</a> <input class="groupBtn btn langLabel tempBtnClass btn-primary-save btnEnabled auditlog savenextGroup" id="savenextGroup" lang="en" style="margin-left: 5px; display: none; line-height: 33px" type="button" value="Save &amp; Next"/> <input class="btn tempBtnClass langLabel btnEnabled auditlog optionselectionButton" id="optionselectionButton" lang="en" style="margin-left: 5px; display: none; line-height: 33px" type="button" value="Next"/> <input class="actionBtn flagButton" id="flagBtn" style="margin-left: 5px; display: none; line-height: 33px" type="button" value=""/><input class="normalBtn tempBtnClass btn btn-primary-save langLabel btnEnabled auditlog savenext" id="savenext" lang="en" style="margin-left: 5px; line-height: 33px;" type="button" value="Save &amp; Next"/>
+</div>
+<div class="typingSubmit" id="typingSubmit" style="display: none; text-align: center;">
+<span id="submitTD" width="100%;"><input class="typingTestButtonDisabled tempBtnClass btn btn-primary-blue auditlogButton" disabled="" id="finalTypingSub" tabindex="0" title="You are not required to click on 'Submit' button ; The system will auto submit at the end." type="button" value="Submit"/></span>
+</div>
+<div align="" class="finalSubmit" id="submitTD">
+<input class="btn btn-primary-blue auditlogButton btnEnabled" id="finalSubmit" tabindex="0" type="button" value="Submit"/>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<!--</div>
+			</div>-->
+</div>
+<div id="sectionSummaryDiv" style="height: 447.667px; display: none;"></div>
+<div align="center" id="breakTimeDiv" style="display: none; height: 564px;" tabindex="-1">
+<div id="breakContentDiv" style="">
+<div aria-label="Break time, showing assessment summary" id="breakTimeCountDiv">
+<div id="breakTimeCounter" style="width: 100%;"> </div>
+</div>
+<div id="breakSummaryDiv" style="height: 90%"></div>
+</div>
+<div class="buttonDiv" id="brkPrcdBtnDiv">
+<input class="btn btn-primary" id="proceedToNextGrp" type="button" value="Proceed to Next Group"/>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<div align="center" id="scoreCardDiv" style="display: none; height: 564px;">
+<div id="scoreSummaryDiv"></div>
+<div id="scoreCardBtnDiv" style="text-align: center;">
+<input class="btn btn-primary" id="scoreCardPrcdBtn" type="button" value="Proceed"/>
+</div>
+<div class="clear"></div>
+</div>
+<div aria-label="Scan QR and Capture Responses" id="qrCodeDiv" role="dialog" style="display:none" tabindex="-1">
+<div aria-describedby="scanCopyUrlValue" aria-hidden="true" id="qrCode" role="img"></div>
+<div aria-hidden="true" id="scanCopyUrlValue" style="font-weight:bold">Scan the QR Code or Use the Short URL :</div>
+<div aria-hidden="true" id="qrCodeMessage"></div>
+<span aria-hidden="true" id="fileuploadNote" style="font-size: 1.3em;font-weight: bold;">  Note : Files needs to be uploaded with in <span class="timeForQrCode"> </span> of time.</span>
+<div id="qrCodeButtonDiv" style="text-align: center;display:none">
+<input class="btn btn-primary" id="qrCodeButton" type="button" value="Capture the Responses"/>
+</div>
+</div>
+<!-- Buttons for tab -->
+<section class="mobActionFixedLayer" style="display: none;">
+<div class="overlayPartMob"></div>
+<div class="mobSnackMainBottom">
+<button class="mobSnackCloseEle"><em></em></button>
+<div class="mobSnackActionItem"></div>
+</div>
+</section>
+<div class="buttons-div btntab" style="display: none;">
+<div class="mob_save" id="mob_save_id">
+<div class="other_buttoncontainer" id="other_buttoncontainer_mob_id">
+<input class="normalBtn btn btn-primary reset-btn auditlog clearResponse" id="clearResponseMbl" style="margin-left: 2px; margin-right: 2px;" type="button" value="Clear Response"/>
+<input class="btn btn-primary auditlog" id="ChatWithUs_div" style="display: none; margin-left: 2px; margin-right: 2px" type="button" value="chat"/>
+<input class="progrmngBtn btn btn-primary reset-btn auditlog" id="resetMbl" style="display: none;" type="button" value="Reset"/>
+<input class="btn btn-primary reset-btn auditlog clearResponseGrp" id="clearResponseGrpMb1" style="display: none;  margin-left: 2px; margin-right: 2px" type="button" value="Clear Response"/>
+<input class="btn btn-primary reportissues" id="reportissue" style="display:none;
+										 margin-left: 1%" type="button" value="Report as issue"/>
+</div>
+<div class="save_buttoncontainer" id="save_buttoncontainer_mob_id" style="margin-right: 255px; margin-left: 1px;">
+<div class="save_buttoncontainer_prev_grp"><input class="btn btn-primary langLabel skip-btn auditlog previousBtnGroup" id="previousBtnGroupMbl" lang="en" style="display: none" tabindex="0" type="button" value="Previous"/>
+<em class="perviousOptionIcon previousBtnGroup btnEnabled" id="prevBtnGrpIlearn" style="display: none;"></em>
+</div>
+<div class="save_buttoncontainer_review_grp">
+<button class="cricleImageMobEle mobTopSaveBtn underreviewGrp" id="mobMoreOptionsBtnActionGrp" style="display: none;" tabindex="-1" value="Mark for Review &amp; Next"><em class="moreOptionsIcon"></em></button>
+<input class="btn btn-primary auditlog langLabel underreviewGrp" id="underreviewGrpMb1" lang="en" style="display: none;" tabindex="0" type="button" value="Mark for Review &amp; Next"/></div>
+<div class="save_buttoncontainer_prev"><input style="display: none; margin-left: 1%" tabindex="0" type="button"/>
+<input class="btn btn-primary langLabel skip-btn auditlog previousBtn btnEnabled" id="previousBtnMbl" lang="en" style="display: none;" type="button" value="Previous"/>
+<em class="perviousOptionIcon previousBtn btnEnabled" id="prevBtnIlearn" style="display: none;"></em>
+</div><div class="save_buttoncontainer_review">
+<button class="cricleImageMobEle mobTopSaveBtn underreview" id="mobMoreOptionsBtnAction" tabindex="-1" value="Mark for Review &amp; Next"><em class="moreOptionsIcon"></em></button>
+<input class="normalBtn langLabel btn btn-primary auditlog underreview" id="underreviewMbl" lang="en" style="" tabindex="0" type="button" value="Mark for Review &amp; Next"/><input class="btn btnEnabled langLabel auditlog optionselectionButton" id="optionselectionButtonMb1" lang="en" style="margin-left: 5px; display: none; line-height: 33px" tabindex="0" type="button" value="Next"/> </div><div class="save_buttoncontainer_compile"><input class="progrmngBtn btn langLabel btn-primary reset-btn auditlog compileCodeBtn" lang="en" style="display: none;" tabindex="0" type="button" value="Compile"/></div>
+<div class="save_buttoncontainer_submit_code"><input class="progrmngBtn langLabel btn btn-primary auditlog submitCodeBtn btnEnabled" lang="en" style="display: none;" tabindex="0" type="button" value="Submit Code"/></div>
+</div>
+</div>
+<div class="save_buttoncontainer_2" id="save_buttoncontainer_2_mob_id">
+<input class="btn langLabel btn-primary-blue sve_nxt auditlogButton btnEnabled" id="finalSubmitMbl" lang="en" type="button" value="Submit"/> <input class="groupBtn langLabel btn btn-primary-blue sve_nxt lst auditlog savenextGroup btnEnabled" id="savenextGroupMbl" lang="en" style="display: none;" type="button" value="Save &amp; Next"/> <input class="progrmngBtn langLabel btn btn-primary-orange sve_nxt auditlogSaveAndNext auditlog saveProgram lst" id="saveProgramMbl" lang="en" style="display: none; color: #fff" type="button"/> <input class="normalBtn langLabel btn btn-primary-blue sve_nxt lst auditlog savenext btnEnabled" id="savenextMbl" lang="en" style="" type="button" value="Save &amp; Next"/>
+<div class="typingSubmit" id="typingSubmitMbl" style="display: none; text-align: center;">
+<input class="btn btn-primary-blue langLabel sve_nxt lst typing auditlogButton" lang="en" title="Submit Group" type="button" value="Submit"/>
+</div>
+</div>
+</div>
+<!-- Buttons for tab -->
+<div class="overlaymenu"></div>
+</div>
+</div>
+<div class="exam-version-footer" id="footer">
+<div aria-hidden="false" id="footer" role="contentinfo">Version : 17.07.00</div>
+</div>
+</div>
+</div>
+<!-- ── MODALS ── -->
+<!-- Instructions Modal -->
+<div class="bmt-modal-overlay" id="modal-instructions" style="display:none;">
+<div class="bmt-modal-box" style="width:700px;">
+<div class="bmt-modal-header">
+<h2>General Instructions</h2>
+<button class="bmt-modal-close" onclick="if (typeof closeAllModals === 'function') closeAllModals(); else document.getElementById('modal-instructions').style.display='none';">×</button>
+</div>
+<div class="bmt-modal-body" id="modal-instructions-body" style="max-height:450px; overflow-y:auto;"></div>
+<div class="bmt-modal-footer">
+<button class="bmt-btn-cancel" onclick="if (typeof closeAllModals === 'function') closeAllModals(); else document.getElementById('modal-instructions').style.display='none';">Close</button>
+</div>
+</div>
+</div>
+<!-- Question Paper Modal -->
+<div class="bmt-modal-overlay" id="modal-qpaper" style="display:none;">
+<div class="bmt-modal-box" style="width:750px;">
+<div class="bmt-modal-header">
+<h2>Question Paper</h2>
+<button class="bmt-modal-close" onclick="if (typeof closeAllModals === 'function') closeAllModals(); else document.getElementById('modal-qpaper').style.display='none';">×</button>
+</div>
+<div class="bmt-modal-body" id="modal-qpaper-body" style="max-height:450px; overflow-y:auto;"></div>
+<div class="bmt-modal-footer">
+<button class="bmt-btn-cancel" onclick="if (typeof closeAllModals === 'function') closeAllModals(); else document.getElementById('modal-qpaper').style.display='none';">Close</button>
+</div>
+</div>
+</div>
+<!-- Submit Confirmation Modal -->
+<div class="bmt-modal-overlay" id="modal-submit" style="display:none;">
+<div class="bmt-modal-box">
+<div class="bmt-modal-header">
+<h2>Submit Exam</h2>
+<button class="bmt-modal-close" id="btn-cancel-submit-x">×</button>
+</div>
+<div class="bmt-modal-body">
+<p style="margin-bottom:12px; font-weight:bold; color:#d9534f;">
+                    ⚠ Are you sure you want to submit? This action cannot be undone.
+                </p>
+<div id="submit-summary"></div>
+</div>
+<div class="bmt-modal-footer">
+<button class="bmt-btn-cancel" id="btn-cancel-submit">Cancel</button>
+<button class="bmt-btn-confirm" id="btn-confirm-submit" style="background:#d9534f;">Submit Exam</button>
+</div>
+</div>
+</div>
+<!-- Section Transition Modal -->
+<div class="bmt-modal-overlay" id="modal-section-transition" style="display:none; z-index:10000;">
+<div class="bmt-modal-box" style="max-width: 480px; text-align: center;">
+<div class="bmt-modal-header" style="justify-content: center;">
+<h2 id="modal-section-transition-title" style="margin: 0; font-size: 18px; color: #147eb3;">Section Transition</h2>
+</div>
+<div class="bmt-modal-body" style="padding: 20px 16px;">
+<p id="modal-section-transition-msg" style="font-size: 15px; font-weight: 600; color: #333; margin-bottom: 16px; line-height: 1.5;"></p>
+<p id="modal-section-transition-timer" style="font-size: 13px; color: #666; margin: 0;">Auto-continuing in <span id="transition-countdown" style="font-weight:bold; color:#147eb3;">5</span> seconds...</p>
+</div>
+<div class="bmt-modal-footer" style="justify-content: center;">
+<button class="btn btn-primary-blue" id="btn-section-transition-ok" style="min-width: 110px; padding: 7px 22px; font-size: 14px; font-weight: 600; cursor: pointer; color: #fff; background: #147eb3; border: 1px solid #147eb3; border-radius: 4px;" type="button">OK</button>
+</div>
+</div>
+</div>
+<!-- Re-attempt Summary Modal -->
+<div class="bmt-modal-overlay" id="modal-reattempt-summary" style="display:none;">
+<div class="bmt-modal-box" style="max-width: 500px;">
+<div class="bmt-modal-header">
+<h2>Re-attempt Summary</h2>
+<button class="bmt-modal-close" id="btn-close-reattempt-summary-x">×</button>
+</div>
+<div class="bmt-modal-body" id="modal-reattempt-summary-body" style="padding: 16px;">
+</div>
+<div class="bmt-modal-footer">
+<button class="bmt-btn-confirm" id="btn-close-reattempt-summary" style="background: #147eb3;">Close</button>
+</div>
+</div>
+</div>
+<!-- Image Lightbox Modal (Click-to-enlarge) -->
+<div class="bmt-modal-overlay" id="modal-image-lightbox" style="display:none; z-index: 1000000; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; cursor: zoom-out;">
+<div onclick="event.stopPropagation()" style="position: relative; max-width: 92vw; max-height: 92vh; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: default;">
+<button aria-label="Close" id="btn-close-image-lightbox" style="position: absolute; top: -36px; right: 0; background: none; border: none; color: #fff; font-size: 32px; font-weight: bold; cursor: pointer; line-height: 1; padding: 2px 8px;">×</button>
+<img alt="Enlarged diagram" draggable="false" id="lightbox-img" src="" style="max-width: 92vw; max-height: 85vh; object-fit: contain; border-radius: 4px; box-shadow: 0 4px 24px rgba(0,0,0,0.6);"/>
+</div>
+</div>
+<!-- Secure server-authored drill controller (original exam interface CSS and DOM retained) -->
+<script src="config.js"></script>
+<script src="js/drill-api.js"></script>
+<script src="js/drill-exam.js"></script>
+</body>
+</html>
