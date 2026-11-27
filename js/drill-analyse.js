@@ -158,6 +158,7 @@
     render();
   }
   function setScreen(){
+    document.body.classList.add('bankdrills-analyse-mode');
     for(const name of ['instructions','declaration','exam']){
       const s=$('screen-'+name);if(s)s.style.display=name==='exam'?'block':'none';
     }

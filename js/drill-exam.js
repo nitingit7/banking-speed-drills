@@ -20,6 +20,13 @@
   }
   function showScreen(name){
     for(const s of ['instructions','declaration','exam']){const el=$('screen-'+s);if(el)el.style.display=name===s?'block':'none'}
+    // Mobile instructions/declaration may scroll; desktop presentation is unchanged.
+    if(window.matchMedia('(max-width:767px)').matches){
+      for(const target of [document.body,document.documentElement]){
+        target.classList.toggle('screen-instructions-active',name==='instructions');
+        target.classList.toggle('screen-declaration-active',name==='declaration');
+      }
+    }
     // Returning from the original bottom-placed Next button must not hide the table.
     window.scrollTo(0,0);document.body.scrollTop=0;document.documentElement.scrollTop=0;
     const activeBody=$(name==='instructions'?'instructions-body':name==='declaration'?'declaration-body':'quesAnsContent');

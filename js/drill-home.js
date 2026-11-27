@@ -9,7 +9,7 @@
   const slug=t=>t.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
   const keyFor=(s,t)=>s==='Quantitative Aptitude'&&t==='Data Sufficiency'?'quant-data-sufficiency':slug(t);
   const topics=Object.entries(SYLLABUS).flatMap(([subject,names],i)=>names.map((title,j)=>({subject,title,key:keyFor(subject,title),available:0,position:i*100+j})));
-  let currentSubject='Quantitative Aptitude';const selected=new Set(),allocation={},allocationCustom={};let pending=null,unfinished=[];const sectionTimes={};const customSectionTimes={};
+  let currentSubject='Quantitative Aptitude';const selected=new Set(),allocation={},allocationCustom={};let pending=null,unfinished=[];
   function banner(message,good=false){const b=$('status-banner');b.textContent=message;b.style.background=good?'#edfbf4':'#fff5de';b.style.color=good?'#116443':'#795b21'}
   function selectedTopics(){return topics.filter(t=>selected.has(t.key))}
   function selectedSubjects(){return Object.keys(SYLLABUS).filter(s=>selectedTopics().some(t=>t.subject===s))}
@@ -24,7 +24,7 @@
   function drawCounts(){const subs=selectedSubjects();const multi=subs.length>1;$('single-count').hidden=multi;$('multi-count').hidden=!multi;
     const preset=$('question-preset');const input=$('question-count');input.hidden=preset.value!=='custom';if(preset.value!=='custom')input.value=preset.value;
     $('count-hint').textContent='Available in selected topics: '+allSelectedAvailability()+' · maximum 100 questions';
-    const fields=$('subject-count-fields');fields.replaceChildren();if(multi){for(const s of subs){if(!Number.isFinite(allocation[s]))allocation[s]=10;const row=document.createElement('div');row.className='allocation-row';const details=document.createElement('div');details.className='allocation-subject';const name=document.createElement('strong');name.textContent=s;const hint=document.createElement('span');hint.className='hint';hint.textContent=availableFor(s)+' available';details.append(name,hint);const controls=document.createElement('div');controls.className='allocation-controls';const v=allocation[s];const select=makeSelect(v,newValue=>{allocationCustom[s]=newValue==='custom';if(newValue!=='custom')allocation[s]=Number(newValue);drawCounts()});if(allocationCustom[s])select.value='custom';select.setAttribute('aria-label',s+' preset question count');const custom=document.createElement('input');custom.type='number';custom.min='1';custom.max='100';custom.step='1';custom.value=String(v);custom.setAttribute('aria-label',s+' custom question count');custom.hidden=select.value!=='custom';custom.oninput=()=>{allocation[s]=Number(custom.value);updateAllocationTotal();refreshSectionTotals()};controls.append(select,custom);row.append(details,controls);fields.append(row)}}updateAllocationTotal();drawSectionTimes()}
+    const fields=$('subject-count-fields');fields.replaceChildren();if(multi){for(const s of subs){if(!Number.isFinite(allocation[s]))allocation[s]=10;const row=document.createElement('div');row.className='allocation-row';const details=document.createElement('div');details.className='allocation-subject';const name=document.createElement('strong');name.textContent=s;const hint=document.createElement('span');hint.className='hint';hint.textContent=availableFor(s)+' available';details.append(name,hint);const controls=document.createElement('div');controls.className='allocation-controls';const v=allocation[s];const select=makeSelect(v,newValue=>{allocationCustom[s]=newValue==='custom';if(newValue!=='custom')allocation[s]=Number(newValue);drawCounts()});if(allocationCustom[s])select.value='custom';select.setAttribute('aria-label',s+' preset question count');const custom=document.createElement('input');custom.type='number';custom.min='1';custom.max='100';custom.step='1';custom.value=String(v);custom.setAttribute('aria-label',s+' custom question count');custom.hidden=select.value!=='custom';custom.oninput=()=>{allocation[s]=Number(custom.value);updateAllocationTotal()};controls.append(select,custom);row.append(details,controls);fields.append(row)}}updateAllocationTotal()}
   function updateAllocationTotal(){const subs=selectedSubjects();let total=0;for(const s of subs)total+=Number(allocation[s]||0);$('allocated-total').textContent=total+' / 100';$('allocated-total').classList.toggle('invalid',total>100||total<1);$('allocation-hint').textContent=subs.length+' subjects · '+subs.map(s=>s+': '+(allocation[s]||0)).join(' · ')}
   function prettySeconds(sec){const m=Math.floor(sec/60),r=sec%60;return m?m+'m '+(r?r+'s':''):r+'s'}
   function currentPer(){return document.querySelector('input[name="mode"]:checked')?.value==='challenge'?30:45}
@@ -33,45 +33,12 @@
     if(subs.length>1)return Number(allocation[subject]||0);
     return Number($('question-preset').value==='custom'?$('question-count').value:$('question-preset').value)||0;
   }
-  function drawSectionTimes(){
-    const subs=selectedSubjects(),host=$('section-time-fields');if(!host)return;
-    $('section-time-settings').hidden=!subs.length;
-    host.replaceChildren();let combined=0;
-    for(const subject of subs){
-      if(!Number.isInteger(sectionTimes[subject]))sectionTimes[subject]=currentPer();
-      const seconds=sectionTimes[subject],count=countForSubject(subject);combined+=count*seconds;
-      const row=document.createElement('div');row.className='section-time-row';
-      const desc=document.createElement('div');const name=document.createElement('strong');name.textContent=subject;
-      const note=document.createElement('small');note.className='section-time-total';note.textContent=count+' questions × '+seconds+' sec = '+prettySeconds(count*seconds);desc.append(name,note);
-      const right=document.createElement('div');right.className='section-time-controls';
-      const select=document.createElement('select');select.setAttribute('aria-label',subject+' seconds per question');
-      for(const val of [30,45,60,75,90]){const opt=document.createElement('option');opt.value=String(val);opt.textContent=val+' sec / question';select.append(opt)}
-      const opt=document.createElement('option');opt.value='custom';opt.textContent='Custom';select.append(opt);
-      select.value=customSectionTimes[subject]||![30,45,60,75,90].includes(seconds)?'custom':String(seconds);
-      const num=document.createElement('input');num.type='number';num.min='10';num.max='180';num.step='1';num.value=String(seconds);
-      num.setAttribute('aria-label',subject+' custom seconds per question');num.hidden=select.value!=='custom';
-      select.onchange=()=>{customSectionTimes[subject]=select.value==='custom';if(select.value!=='custom')sectionTimes[subject]=Number(select.value);drawSectionTimes()};
-      num.oninput=()=>{sectionTimes[subject]=Number(num.value);refreshSectionTotals()};
-      right.append(select,num);row.append(desc,right);host.append(row);
-    }
-    $('total-section-time').textContent=prettySeconds(combined);
-  }
-  function refreshSectionTotals(){
-    let sum=0;for(const subject of selectedSubjects()){
-      const sec=Number(sectionTimes[subject]||0),duration=countForSubject(subject)*sec;
-      sum+=duration;const row=[...$('section-time-fields').children].find(el=>el.querySelector('strong')?.textContent===subject);
-      if(row?.querySelector('.section-time-total'))row.querySelector('.section-time-total').textContent=countForSubject(subject)+' questions × '+sec+' sec = '+prettySeconds(duration);
-    }$('total-section-time').textContent=prettySeconds(sum);
-  }
   function settings(){if(!DrillAPI.auth()){unlockVisible(true);return null}if(!selected.size){banner('Choose at least one topic first.');return null}
     const subs=selectedSubjects();const isMulti=subs.length>1;const quotas={};let count=0;if(isMulti){for(const s of subs){const n=Number(allocation[s]);if(!Number.isInteger(n)||n<1||n>100){banner('Enter 1–100 whole-number questions for each selected subject.');return null}if(n>availableFor(s)){banner('Only '+availableFor(s)+' approved questions available in '+s+'. Reduce this subject\'s count.');return null}quotas[s]=n;count+=n}}
     else{count=Number($('question-preset').value==='custom'?$('question-count').value:$('question-preset').value);if(count>allSelectedAvailability()){banner('Only '+allSelectedAvailability()+' approved questions available in the selected topics.');return null}}
     if(!Number.isInteger(count)||count<1||count>100){banner('Select a total of 1–100 whole-number questions.');return null}
     const mode=document.querySelector('input[name="mode"]:checked')?.value||'normal';
-    const secondsPerSubject={};for(const subject of subs){const seconds=Number(sectionTimes[subject]||currentPer());
-      if(!Number.isInteger(seconds)||seconds<10||seconds>180){banner('Set 10–180 whole seconds per question for '+subject);return null}
-      secondsPerSubject[subject]=seconds;
-    }
+    const secondsPerSubject=Object.fromEntries(subs.map(subject=>[subject,currentPer()]));
     return{count,mode,seconds:mode==='challenge'?30:45,keys:[...selected],quotas,subjects:subs,section_seconds:secondsPerSubject};}
   function unlockVisible(v){$('unlock-modal').classList.toggle('open',v)}
   function loginGate(){
@@ -118,7 +85,7 @@
   $('select-all').onclick=()=>{for(const t of topics.filter(t=>t.subject===currentSubject))selected.add(t.key);drawSubjects();drawTopics()};
   $('clear-subject').onclick=()=>{for(const t of topics.filter(t=>t.subject===currentSubject))selected.delete(t.key);drawSubjects();drawTopics()};
   $('question-preset').onchange=()=>drawCounts();
-  document.querySelectorAll('input[name="mode"]').forEach(el=>el.addEventListener('change',()=>{for(const k of Object.keys(sectionTimes)){sectionTimes[k]=currentPer();customSectionTimes[k]=false}drawSectionTimes()}));$('question-count').oninput=()=>refreshSectionTotals();
+  
   $('start-drill').onclick=()=>{pending=settings();if(!pending)return;const total=pending.subjects.reduce((n,sub)=>n+(pending.quotas[sub]||pending.count)*pending.section_seconds[sub],0);const summary=$('start-summary');summary.replaceChildren();const intro=document.createElement('strong');intro.textContent=(pending.mode==='challenge'?'🔥 Challenge':'🟢 Normal')+' · '+pending.count+' questions · sectional timing';summary.append(intro);const d=document.createElement('div');d.className='hint';d.textContent='Maximum total '+Math.floor(total/60)+'m '+(total%60)+'s · '+pending.keys.length+' selected topics';summary.append(d);if(pending.subjects.length>1){const ul=document.createElement('ul');ul.className='allocation-list';for(const s of pending.subjects){const li=document.createElement('li');li.textContent=s+': '+pending.quotas[s]+' questions · '+prettySeconds(pending.quotas[s]*pending.section_seconds[s]);ul.append(li)}summary.append(ul)}$('start-error').textContent='';
     const warn=$('unfinished-warning');warn.hidden=!unfinished.length;
     warn.textContent=unfinished.length?'You have '+unfinished.length+' unfinished test'+(unfinished.length===1?'':'s')+'. Starting another will NOT pause or delete the existing test. Its VM timer continues. Choose Start to proceed or Back to cancel.':'';
