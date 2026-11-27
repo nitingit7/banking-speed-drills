@@ -9,6 +9,10 @@
   const create=(tag,cls,text)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=String(text);return el;};
   let data=null,index=0,filter='all',practice=false;
   const tries=new Map();
+  const formatQuestionTime=secs=>{
+    const n=Math.max(0,Math.floor(Number(secs)||0));
+    return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');
+  };
   const originalStatus=q=>{
     if(q?.selected===null||q?.selected===undefined||q?.selected==='')return 'skipped';
     return Number(q.selected)===Number(q.correct_index)?'correct':'wrong';
@@ -196,7 +200,9 @@
       }
     }
     const badge=$('q-timer');if(badge){
-      badge.textContent=practice?(reAnswer?(reAnswer.isCorrect?'Practice answer: Correct':'Practice answer: Incorrect'):'Choose an answer to check'):'Original answer review';
+      const recorded=q.time_spent_seconds!==null&&q.time_spent_seconds!==undefined&&Number.isFinite(Number(q.time_spent_seconds));
+      badge.textContent='Question Time: '+(recorded?formatQuestionTime(q.time_spent_seconds):'Not recorded');
+      badge.title='Time spent on this question in the original completed drill';
       badge.style.display='inline-block';
     }
     // Analysis does not run an exam timer or manufacture per-question times.

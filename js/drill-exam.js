@@ -10,6 +10,24 @@
   let busy=false,refreshing=false,saveQueue=Promise.resolve(),lastChoice=null;
   let nextExpiryRefresh=0;
   let started=false;
+  let questionClock={index:-1,base:0,at:0,running:false};
+  const formatQuestionTime=secs=>{
+    const n=Math.max(0,Math.floor(Number(secs)||0));
+    return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');
+  };
+  function questionClockElapsed(){
+    return questionClock.base+(questionClock.running&&document.visibilityState==='visible'
+      ? Math.max(0,(performance.now()-questionClock.at)/1000):0);
+  }
+  function setQuestionClock(){
+    questionClock={index:Number(state?.current_index??-1),base:Math.max(0,Number(state?.question_time_seconds)||0),
+      at:performance.now(),running:state?.status==='active'&&state?.question_time_running!==false&&document.visibilityState==='visible'};
+    drawQuestionClock();
+  }
+  function drawQuestionClock(){
+    const el=$('drill-question-time');
+    if(el&&state?.status==='active')el.textContent='Question Time: '+formatQuestionTime(questionClockElapsed());
+  }
   const create=(name,cls,text)=>{const el=document.createElement(name);if(cls)el.className=cls;if(text!==undefined)el.textContent=String(text);return el};
   const selectors=(sel,cb)=>document.querySelectorAll(sel).forEach(cb);
   const setText=(sel,s)=>selectors(sel,x=>x.textContent=String(s));
@@ -298,7 +316,14 @@
     if(state.status==='completed'){location.replace('result.html?attempt='+encodeURIComponent(attemptId));return}
     const host=$('quesAnsContent');if(!host)return;
     const q=state.question||{};
-    const hdr=$('divHeader_id');if(hdr){hdr.replaceChildren();const b=create('b');b.append(document.createTextNode('Question No. '+(state.current_index-sectionInfo().start+1)));hdr.append(b)}
+    const hdr=$('divHeader_id');if(hdr){
+      hdr.replaceChildren();
+      const b=create('b',null,'Question No. '+(state.current_index-sectionInfo().start+1));
+      const qt=create('span','drill-question-time');qt.id='drill-question-time';
+      qt.setAttribute('role','timer');qt.setAttribute('aria-label','Time spent on current question');
+      hdr.append(b,qt);
+    }
+    setQuestionClock();
     host.replaceChildren();
     const question=create('div','textHighlighter drill-text-question',q.question_text||q.text||'Question unavailable.');
     question.style.cssText='width:98%;margin-left:5px;font-family:Arial,verdana,helvetica,sans-serif;padding-bottom:10px;padding-top:10px';host.append(question);
@@ -342,7 +367,14 @@
   async function refresh(){
     if(refreshing||!attemptId)return;
     refreshing=true;
-    try{const snap=await DrillAPI.current(attemptId);if(state&&snap.status==='active'&&state.section_index!==snap.section_index)warn('Next section: '+(snap.active_section?.subject||'Speed Drill')+' · previous section locked.');if(!state||state.current_index!==snap.current_index||state.status!==snap.status){state=snap;render()}else{state=snap;updatePalette()}offset=Date.parse(state.server_now)-Date.now()}
+    try{
+      const snap=await DrillAPI.current(attemptId);
+      if(state&&snap.status==='active'&&state.section_index!==snap.section_index)warn('Next section: '+(snap.active_section?.subject||'Speed Drill')+' · previous section locked.');
+      const changed=!state||state.current_index!==snap.current_index||state.status!==snap.status;
+      state=snap;offset=Date.parse(state.server_now)-Date.now();
+      if(changed)render();else{updatePalette();setQuestionClock()}
+      tick();
+    }
     catch(e){warn(e)}finally{refreshing=false}
   }
   function tick(){
@@ -355,14 +387,46 @@
     if($('m01_hrs'))$('m01_hrs').textContent='00';if($('min_val'))$('min_val').textContent=min;if($('sec01_val'))$('sec01_val').textContent=sec;
     if(overall===0&&Date.now()>nextExpiryRefresh){nextExpiryRefresh=Date.now()+2000;refresh()}
     const el=$('showTime');if(el)el.title='Remaining time for '+sectionInfo().subject+': '+overall+' seconds';
+    drawQuestionClock();
   }
   function activate(){
     if(!started)configureExam();
     showScreen('exam');render();tick();
+    // A newly opened/resumed tab starts a fresh foreground observation. Do not
+    // assign dormant time from an abandoned device to this question.
+    DrillAPI.heartbeat(attemptId,true,true).then(snap=>{
+      const changed=snap.status!==state?.status||snap.current_index!==state?.current_index||snap.section_index!==state?.section_index;
+      state=snap;offset=Date.parse(snap.server_now)-Date.now();
+      if(changed)render();else setQuestionClock();tick();
+    }).catch(()=>{});
     if(!window._bdTick)window._bdTick=setInterval(tick,500);
     if(!window._bdRefresh)window._bdRefresh=setInterval(()=>{if(!busy)refresh()},12000);
-    if(!window._bdHeart)window._bdHeart=setInterval(()=>{if(!busy&&document.visibilityState==='visible'&&state?.status==='active')DrillAPI.heartbeat(attemptId).then(snap=>{if(snap.status!=='active'||snap.section_index!==state?.section_index){state=snap;offset=Date.parse(snap.server_now)-Date.now();render();}}).catch(()=>{})},8000);
+    if(!window._bdHeart)window._bdHeart=setInterval(()=>{
+      if(!busy&&document.visibilityState==='visible'&&state?.status==='active'){
+        DrillAPI.heartbeat(attemptId,true).then(snap=>{
+          const changed=snap.status!==state?.status||snap.current_index!==state?.current_index||snap.section_index!==state?.section_index;
+          state=snap;offset=Date.parse(snap.server_now)-Date.now();
+          if(changed)render();else setQuestionClock();
+        }).catch(()=>{});
+      }
+    },8000);
   }
+  document.addEventListener('visibilitychange',()=>{
+    if(!started||!attemptId||state?.status!=='active')return;
+    if(document.visibilityState==='hidden'){
+      questionClock.base += questionClock.running?Math.max(0,(performance.now()-questionClock.at)/1000):0;
+      questionClock.at=performance.now();questionClock.running=false;
+      DrillAPI.heartbeat(attemptId,false).catch(()=>{});
+    }else{
+      questionClock.running=false;
+      DrillAPI.heartbeat(attemptId,true,true).then(snap=>{
+        const changed=snap.status!==state?.status||snap.current_index!==state?.current_index||snap.section_index!==state?.section_index;
+        state=snap;offset=Date.parse(snap.server_now)-Date.now();
+        if(changed)render();else setQuestionClock();
+        tick();
+      }).catch(()=>refresh());
+    }
+  });
   if(params.get('mode')==='analyse') return; // handled by read-only original-UI analyse adapter
   document.addEventListener('DOMContentLoaded',async()=>{
     if(!DrillAPI.auth()){location.replace('index.html?unlock=1');return}

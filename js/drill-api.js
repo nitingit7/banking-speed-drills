@@ -5,13 +5,13 @@ window.DrillAPI = (() => {
   function auth(){try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}}
   function saveAuth(a){localStorage.setItem(key,JSON.stringify(a))}
   function signOut(){localStorage.removeItem(key)}
-  async function request(path,{method='GET',body,publicCall=false}={}){
+  async function request(path,{method='GET',body,publicCall=false,keepalive=false}={}){
     if(!base || !base.startsWith('https://') && !base.startsWith('http://localhost')) throw new Error('Configure an HTTPS PocketBase API in config.js');
     const headers={'Accept':'application/json'};
     if(body!==undefined) headers['Content-Type']='application/json';
     if(!publicCall){const a=auth();if(!a||!a.token)throw new Error('Unlock your private drill account first');headers['Authorization']=a.token}
     let response;
-    try{response=await fetch(base+path,{method,headers,body:body===undefined?undefined:JSON.stringify(body),cache:'no-store'})}
+    try{response=await fetch(base+path,{method,headers,body:body===undefined?undefined:JSON.stringify(body),cache:'no-store',keepalive})}
     catch(_){throw new Error('Cannot reach VM API. Check domain, HTTPS, and deployment.')}
     const json=await response.json().catch(()=>({}));
     if(!response.ok){if(response.status===401)signOut();throw new Error(json.message||json.data?.message||('API error '+response.status))}
@@ -34,7 +34,7 @@ window.DrillAPI = (() => {
     navigate:(id,index)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/navigate',{method:'POST',body:{index}}),
     advance:(id,index)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/advance',{method:'POST',body:{index}}),
     submit:(id,section_index=null)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/submit',{method:'POST',body:{section_index}}),
-    heartbeat:(id)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/heartbeat',{method:'POST',body:{}}),
+    heartbeat:(id,visible=true,resuming=false)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/heartbeat',{method:'POST',body:{visible,resuming},keepalive:visible===false}),
     result:(id)=>request('/api/bankdrills/attempts/'+encodeURIComponent(id)+'/result')
   };
   return api;
