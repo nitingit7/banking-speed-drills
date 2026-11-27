@@ -33,10 +33,16 @@
     if(subs.length>1)return Number(allocation[subject]||0);
     return Number($('question-preset').value==='custom'?$('question-count').value:$('question-preset').value)||0;
   }
-  function settings(){if(!DrillAPI.auth()){unlockVisible(true);return null}if(!selected.size){banner('Choose at least one topic first.');return null}
-    const subs=selectedSubjects();const isMulti=subs.length>1;const quotas={};let count=0;if(isMulti){for(const s of subs){const n=Number(allocation[s]);if(!Number.isInteger(n)||n<1||n>100){banner('Enter 1–100 whole-number questions for each selected subject.');return null}if(n>availableFor(s)){banner('Only '+availableFor(s)+' approved questions available in '+s+'. Reduce this subject\'s count.');return null}quotas[s]=n;count+=n}}
-    else{count=Number($('question-preset').value==='custom'?$('question-count').value:$('question-preset').value);if(count>allSelectedAvailability()){banner('Only '+allSelectedAvailability()+' approved questions available in the selected topics.');return null}}
-    if(!Number.isInteger(count)||count<1||count>100){banner('Select a total of 1–100 whole-number questions.');return null}
+  function startWarning(message){
+    banner(message);
+    const warning=$('drill-validation-warning');
+    if(warning){warning.textContent=message;warning.hidden=false;warning.scrollIntoView?.({block:'nearest',behavior:'smooth'});}
+  }
+  function clearStartWarning(){const warning=$('drill-validation-warning');if(warning){warning.hidden=true;warning.textContent='';}}
+  function settings(){if(!DrillAPI.auth()){unlockVisible(true);return null}if(!selected.size){startWarning('Select at least one subject and topic before starting the drill.');return null}
+    const subs=selectedSubjects();const emptyTopics=selectedTopics().filter(t=>Number(t.available||0)===0);if(emptyTopics.length){startWarning('No questions have been added for '+emptyTopics.map(t=>t.title).join(', ')+'. Deselect the empty topic(s) and select those with approved questions.');return null}const isMulti=subs.length>1;const quotas={};let count=0;if(isMulti){for(const s of subs){const n=Number(allocation[s]);if(!Number.isInteger(n)||n<1||n>100){startWarning('Enter 1–100 whole-number questions for each selected subject.');return null}if(n>availableFor(s)){startWarning('Only '+availableFor(s)+' approved questions available in '+s+'. Reduce this subject\'s count.');return null}quotas[s]=n;count+=n}}
+    else{count=Number($('question-preset').value==='custom'?$('question-count').value:$('question-preset').value);if(count>allSelectedAvailability()){startWarning('Only '+allSelectedAvailability()+' approved questions available in the selected topics.');return null}}
+    if(!Number.isInteger(count)||count<1||count>100){startWarning('Select a total of 1–100 whole-number questions.');return null}
     const mode=document.querySelector('input[name="mode"]:checked')?.value||'normal';
     const secondsPerSubject=Object.fromEntries(subs.map(subject=>[subject,currentPer()]));
     return{count,mode,seconds:mode==='challenge'?30:45,keys:[...selected],quotas,subjects:subs,section_seconds:secondsPerSubject};}
@@ -86,7 +92,7 @@
   $('clear-subject').onclick=()=>{for(const t of topics.filter(t=>t.subject===currentSubject))selected.delete(t.key);drawSubjects();drawTopics()};
   $('question-preset').onchange=()=>drawCounts();
   
-  $('start-drill').onclick=()=>{pending=settings();if(!pending)return;const total=pending.subjects.reduce((n,sub)=>n+(pending.quotas[sub]||pending.count)*pending.section_seconds[sub],0);const summary=$('start-summary');summary.replaceChildren();const intro=document.createElement('strong');intro.textContent=(pending.mode==='challenge'?'🔥 Challenge':'🟢 Normal')+' · '+pending.count+' questions · sectional timing';summary.append(intro);const d=document.createElement('div');d.className='hint';d.textContent='Maximum total '+Math.floor(total/60)+'m '+(total%60)+'s · '+pending.keys.length+' selected topics';summary.append(d);if(pending.subjects.length>1){const ul=document.createElement('ul');ul.className='allocation-list';for(const s of pending.subjects){const li=document.createElement('li');li.textContent=s+': '+pending.quotas[s]+' questions · '+prettySeconds(pending.quotas[s]*pending.section_seconds[s]);ul.append(li)}summary.append(ul)}$('start-error').textContent='';
+  $('start-drill').onclick=()=>{clearStartWarning();pending=settings();if(!pending)return;const total=pending.subjects.reduce((n,sub)=>n+(pending.quotas[sub]||pending.count)*pending.section_seconds[sub],0);const summary=$('start-summary');summary.replaceChildren();const intro=document.createElement('strong');intro.textContent=(pending.mode==='challenge'?'🔥 Challenge':'🟢 Normal')+' · '+pending.count+' questions · sectional timing';summary.append(intro);const d=document.createElement('div');d.className='hint';d.textContent='Maximum total '+Math.floor(total/60)+'m '+(total%60)+'s · '+pending.keys.length+' selected topics';summary.append(d);if(pending.subjects.length>1){const ul=document.createElement('ul');ul.className='allocation-list';for(const s of pending.subjects){const li=document.createElement('li');li.textContent=s+': '+pending.quotas[s]+' questions · '+prettySeconds(pending.quotas[s]*pending.section_seconds[s]);ul.append(li)}summary.append(ul)}$('start-error').textContent='';
     const warn=$('unfinished-warning');warn.hidden=!unfinished.length;
     warn.textContent=unfinished.length?'You have '+unfinished.length+' unfinished test'+(unfinished.length===1?'':'s')+'. Starting another will NOT pause or delete the existing test. Its VM timer continues. Choose Start to proceed or Back to cancel.':'';
     $('start-modal').classList.add('open')};

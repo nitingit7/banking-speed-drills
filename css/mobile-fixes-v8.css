@@ -1,0 +1,58 @@
+/* v8: targeted phone layout fixes only. Desktop original UI is unchanged. */
+@media (max-width: 767px) {
+  /* The two legacy TCS demo header rows caused the white gap and Physics / PCB strip. */
+  body.exam-page #screen-exam .commanHeaderPatch,
+  body.exam-page #screen-exam .subheader_tab,
+  body.exam-page #screen-exam .groupSectionPlaceholder,
+  body.exam-page #screen-exam .q_tab.question_area {display:none!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important;}
+  body.exam-page #screen-exam .headergrup {height:auto!important;min-height:0!important;}
+  body.exam-page #screen-exam #minwidth {padding-top:0!important;margin-top:0!important;}
+  body.exam-page #screen-exam #candidateConsoleId {margin-top:0!important;padding-top:0!important;}
+  body.exam-page #screen-exam .grup_components {min-height:43px!important;height:43px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;box-sizing:border-box!important;padding:4px 8px!important;gap:8px;}
+  body.exam-page #mobile-subject-label {display:block;min-width:0;max-width:52%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:white;font:700 12px Arial,sans-serif;}
+  body.exam-page.bankdrills-analyse-mode #screen-exam .grup_components {display:none!important;height:0!important;min-height:0!important;padding:0!important;}
+  /* The preexisting Questions drawer now opens from the visible header bar, not an arbitrary fixed coordinate. */
+  body.exam-page #mobile-palette-toggle,
+  body.exam-page.bankdrills-analyse-mode #mobile-palette-toggle {position:static!important;top:auto!important;right:auto!important;flex:0 0 auto;min-height:34px!important;margin:0!important;z-index:1000!important;white-space:nowrap;box-shadow:none;}
+  body.exam-page.bankdrills-analyse-mode #sub-header {gap:5px!important;padding:5px 8px!important;}
+  body.exam-page.bankdrills-analyse-mode #analyse-top-bar {gap:6px!important;min-height:38px!important;justify-content:space-between!important;align-items:center!important;padding:3px 0!important;}
+  body.exam-page.bankdrills-analyse-mode #analyse-top-bar label {font-size:12px!important;white-space:nowrap;}
+  body.exam-page.bankdrills-analyse-mode #btn-back-to-results {min-height:34px!important;padding:6px 8px!important;font-size:12px!important;}
+  body.exam-page.bankdrills-analyse-mode #mobile-palette-toggle {margin-left:auto!important;min-width:93px!important;}
+  /* Scroll the real question content inside its viewport, including long questions and answer review. */
+  body.exam-page #Questn_Area {position:relative!important;touch-action:pan-y!important;}
+  body.exam-page #currentQues,
+  body.exam-page.bankdrills-analyse-mode #currentQues {height:var(--bmt-v8-available-height,calc(100dvh - 225px))!important;min-height:130px!important;overflow:hidden!important;}
+  body.exam-page #currentQues .leftDiv {height:calc(var(--bmt-v8-available-height,500px) - 4px)!important;max-height:calc(var(--bmt-v8-available-height,500px) - 4px)!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;touch-action:pan-y!important;overscroll-behavior-y:contain!important;padding-bottom:18px!important;}
+  body.exam-page #currentQues #quesOuterDiv {height:auto!important;max-height:none!important;overflow:visible!important;touch-action:pan-y!important;}
+  body.exam-page #currentQues #quesAnsContent {height:auto!important;max-height:none!important;overflow:visible!important;touch-action:pan-y!important;padding-bottom:18px!important;}
+  body.exam-page #screen-exam .optionLabel {touch-action:pan-y!important;}
+  body.exam-page #screen-exam #mobile-font-tools {top:4px!important;right:5px!important;}
+  body.exam-page #screen-exam #divHeader_id {padding-right:100px!important;}
+  body.exam-page #screen-exam #quesAnsContent .labelForOptText {min-width:0!important;}
+  /* Preserve current phone footer, keep its buttons touch-target sized. */
+  body.exam-page #mobile-palette-backdrop {touch-action:none;}
+  /* Home: settings before topics on phones only. */
+  body:not(.exam-page) .main-grid {display:flex!important;flex-direction:column!important;gap:14px!important;}
+  body:not(.exam-page) .main-grid>.settings-panel {order:0;}
+  body:not(.exam-page) .main-grid>.topics-panel {order:1;}
+}
+@media (min-width: 768px) {
+  #mobile-subject-label {display:none!important;}
+}
+/* This is only activated by the user's A- / A+ controls. Without a click the source font sizes stay intact. */
+body.bmt-font-adjusted #quesAnsContent .textHighlighter,
+body.bmt-font-adjusted #quesAnsContent .opt-text,
+body.bmt-font-adjusted #quesAnsContent .opt-prefix,
+body.bmt-font-adjusted #quesAnsContent .labelForOptText {font-size:var(--bmt-q-font,18px)!important;line-height:1.5!important;}
+#mobile-font-tools {position:absolute;top:4px;right:8px;display:flex;align-items:center;gap:3px;z-index:50;background:#fff;border:1px solid #d3e0e9;border-radius:6px;padding:2px;box-shadow:0 1px 3px #0001;}
+#mobile-font-tools button {border:0;background:#eef7fd;color:#17658f;border-radius:4px;font:700 13px Arial,sans-serif;min-width:33px;min-height:28px;padding:4px;cursor:pointer;}
+#mobile-font-tools button:focus-visible {outline:2px solid #147eb3;outline-offset:2px;}
+#mobile-font-tools button:disabled {opacity:.4;cursor:default;}
+#drill-validation-warning {background:#fff1ed;color:#973c21;border:1px solid #e6a89a;border-radius:8px;padding:10px 12px;font-size:13px;font-weight:700;line-height:1.45;margin-top:10px;}
+#drill-validation-warning[hidden] {display:none!important;}
+@media (max-width:767px) {
+  /* Empty legacy #header still reserves a mobile line box in source CSS. */
+  body.exam-page #screen-exam .headergrup #header {display:none!important;height:0!important;}
+  body.exam-page #screen-exam .headergrup {display:flex!important;flex-direction:column!important;align-items:stretch!important;}
+}
