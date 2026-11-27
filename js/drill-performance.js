@@ -1,0 +1,35 @@
+/* Performance summary from the VM, not localStorage. No client-calculated attempt scores. */
+(function(){'use strict';
+  const $=id=>document.getElementById(id);let attempts=[];const topicNames=new Map();
+  function banner(message,good=false){const b=$('status-banner');b.textContent=message;b.style.background=good?'#edfbf4':'#fff5de';b.style.color=good?'#116443':'#795b21'}
+  function shortDate(v){if(!v)return '—';const d=new Date(v);return Number.isNaN(d.getTime())?'—':d.toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'})}
+  function timeLabel(seconds){if(!Number.isFinite(seconds)||seconds<0)return '—';const m=Math.floor(seconds/60),h=Math.floor(m/60);return h?(h+'h '+m%60+'m'):(m?m+'m '+Math.floor(seconds%60)+'s':Math.floor(seconds)+'s')}
+  function setStat(id,val){$(id).textContent=val}
+  function scorePercent(a){return Number(a.total)>0?Number(a.score)/Number(a.total)*100:0}
+  function displaySummary(stats){const c=Number(stats.completed||0),avg=Number(stats.average_accuracy||0),best=stats.best_score||null;
+    setStat('stat-attempts',String(c));setStat('stat-accuracy',c?avg.toFixed(1)+'%':'—');setStat('stat-time',c?timeLabel(Number(stats.practice_seconds||0)):'—');setStat('stat-best',best?Number(best.percentage).toFixed(1)+'%':'—');
+    $('best-score-note').textContent=best?(Number(best.score).toFixed(2)+' / '+best.total+' marks · '+(best.mode==='challenge'?'🔥 Challenge':'🟢 Normal')):'Percentage of maximum marks';
+    const first=stats.first_score||null,last=stats.latest_score||null;
+    if(!first||!last){setStat('movement-value','—');$('movement-description').textContent='Finish a drill to start tracking improvement.';$('movement-first').textContent='First attempt —';$('movement-last').textContent='Latest —';$('movement-fill').style.width='0%';$('movement-note').textContent='Comparison begins after your first completed drill.'}
+    else{const diff=Number(stats.score_improvement_points||0);setStat('movement-value',(diff>0?'+':'')+diff.toFixed(1)+' pts');$('movement-value').className='movement-number'+(diff<0?' negative':'');$('movement-description').textContent='Latest score % compared with your first completed attempt.';$('movement-first').textContent='First attempt '+Number(first.percentage).toFixed(1)+'%';$('movement-last').textContent='Latest '+Number(last.percentage).toFixed(1)+'%';$('movement-fill').style.width=Math.max(0,Math.min(100,Number(last.percentage)))+'%';$('movement-note').textContent=c===1?'Complete another drill to compare your improvement.':'Based on score as % of maximum possible marks, so drills of different lengths are comparable.'}
+    drawTrend(stats.recent_scores||[]);
+  }
+  function drawTrend(data){const host=$('trend');host.replaceChildren();if(!data.length){const sp=document.createElement('span');sp.className='hint';sp.textContent='Your score trend will appear after completed drills.';host.append(sp);return}
+    const recent=data.slice().reverse(),NS='http://www.w3.org/2000/svg',s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 380 180');s.setAttribute('class','chart');s.setAttribute('role','img');s.setAttribute('aria-label','Recent drill score percentages');
+    function yOf(p){return 150-(Math.max(-25,Math.min(100,Number(p)))+25)/125*122}
+    for(const y of [28,88,150]){const line=document.createElementNS(NS,'line');for(const [key,value] of Object.entries({x1:22,y1:y,x2:360,y2:y,stroke:'#dfebf4','stroke-width':1}))line.setAttribute(key,value);s.append(line)}
+    const pts=recent.map((a,i)=>[25+(333*i/Math.max(1,recent.length-1)),yOf(a.percentage)]);if(pts.length>1){const path=document.createElementNS(NS,'polyline');path.setAttribute('points',pts.map(p=>p.join(',')).join(' '));path.setAttribute('fill','none');path.setAttribute('stroke','#147eb3');path.setAttribute('stroke-width','3');path.setAttribute('stroke-linecap','round');s.append(path)}
+    pts.forEach((p,i)=>{const dot=document.createElementNS(NS,'circle');dot.setAttribute('cx',p[0]);dot.setAttribute('cy',p[1]);dot.setAttribute('r',5);dot.setAttribute('fill','#147eb3');const tip=document.createElementNS(NS,'title');tip.textContent='Attempt '+(i+1)+': '+Number(recent[i].percentage).toFixed(1)+'%';dot.append(tip);s.append(dot)});host.append(s)
+  }
+  function badge(mode){const span=document.createElement('span');span.className='pill '+(mode==='challenge'?'challenge':'normal');span.textContent=mode==='challenge'?'🔥 Challenge':'🟢 Normal';return span}
+  function drawHistory(){const rows=$('history-rows');rows.replaceChildren();if(!attempts.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=6;td.className='none';td.textContent='No attempts yet. Create a drill to begin your history.';tr.append(td);rows.append(tr);return}
+    for(const a of attempts){const tr=document.createElement('tr');const titles=(a.topics||[]).map(k=>topicNames.get(k)||k.replace(/-/g,' '));const title=titles.slice(0,2).join(', ')+(titles.length>2?' +'+(titles.length-2):'');const vals=[shortDate(a.started_at),title||'—',null,String(a.total||0),a.status==='completed'?Number(a.score).toFixed(2)+' / '+a.total:'In progress'];for(let i=0;i<vals.length;i++){const td=document.createElement('td');if(i===2)td.append(badge(a.mode));else td.textContent=vals[i];tr.append(td)}const td=document.createElement('td'),link=document.createElement('a');link.href=(a.status==='completed'?'result.html':'drill.html')+'?attempt='+encodeURIComponent(a.id);link.textContent=a.status==='completed'?'View results':'Resume';td.append(link);tr.append(td);rows.append(tr)}
+  }
+  async function refresh(){if(!DrillAPI.auth()){banner('Connect your VM to load completed attempts and performance data.');return}banner('Syncing performance from your VM…');try{const [stats,hist,cat]=await Promise.all([DrillAPI.stats(),DrillAPI.attempts(),DrillAPI.catalog()]);topicNames.clear();for(const t of cat.topics||[])topicNames.set(t.key,t.title);attempts=hist.attempts||[];displaySummary(stats);drawHistory();banner('Your performance data is synced with the VM.',true);$('connection-state').textContent=DrillAPI.auth()?.displayName||'Connected';$('btn-unlock').textContent='Sign out'}catch(e){banner('Could not sync performance: '+e.message)}}
+  function unlockVisible(v){$('unlock-modal').classList.toggle('open',v)}
+  $('btn-unlock').onclick=()=>{if(DrillAPI.auth()){if(confirm('Sign out this device? Your saved attempts remain on the VM.')){DrillAPI.signOut();location.reload()}}else unlockVisible(true)};
+  $('close-unlock').onclick=()=>unlockVisible(false);
+  $('unlock-form').onsubmit=async e=>{e.preventDefault();$('unlock-error').textContent='';$('submit-unlock').disabled=true;try{await DrillAPI.unlock($('unlock-email').value.trim(),$('unlock-password').value);$('unlock-password').value='';unlockVisible(false);await refresh()}catch(err){$('unlock-error').textContent=err.message}finally{$('submit-unlock').disabled=false}};
+  $('refresh').onclick=refresh;
+  drawHistory();refresh();if(new URLSearchParams(location.search).has('unlock')&&!DrillAPI.auth())unlockVisible(true);
+})();
