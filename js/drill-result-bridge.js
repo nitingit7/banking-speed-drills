@@ -25,10 +25,7 @@
     try{
       const data=await DrillAPI.result(id);
       if(!Array.isArray(data.review)||!data.review.length)throw Error('This attempt has no completed question review');
-      const [catalog,history]=await Promise.all([
-        DrillAPI.catalog().catch(()=>({topics:[]})),
-        DrillAPI.attempts().catch(()=>({attempts:[]}))
-      ]);
+      const catalog=await DrillAPI.catalog().catch(()=>({topics:[]}));
       for(const item of catalog.topics||[])subjMap.set(String(item.key),String(item.subject));
       const groups=new Map();
       for(const q of data.review){
@@ -56,25 +53,19 @@
       };
       // Virtual storage in memory only. Does not persist the answer key or
       // overwrite the actual browser-local exam/storage records.
-      const all=[...(history.attempts||[])].filter(a=>a.status==='completed').reverse().map(a=>({
-        attemptId:a.id,testName:(a.mode==='challenge'?'🔥 Challenge':'🟢 Normal')+' Speed Drill',
-        totalScore:num(a.score),totalMarks:num(a.total),totalTime:Math.max(0,
-          (Date.parse(String(a.finished_at))-Date.parse(String(a.started_at)))/1000)||0,
-        submittedAt:a.finished_at,integrity:null
-      }));
       const attempt={attemptId:id,submitted:true,testData:{meta:{
         examName:'Banking Speed Drill',testName:data.mode==='challenge'?'Challenge Mode':'Normal Mode',
         allowReattempt:true
       },sections:sections.map(s=>({name:s.sectionName,questions:[]}))}};
       window.Storage={loadActiveAttempt:()=>attempt,loadTestData:()=>attempt.testData,
-        getAttemptById:x=>x===id?record:null,loadAttempts:()=>all,
+        getAttemptById:x=>x===id?record:null,loadAttempts:()=>[],
         saveAnalysisAttempt:()=>{},clearActiveAttempt:()=>{},loadOriginalTestData:()=>null,
         saveTestData:()=>{}};
       window.State={calculateResults:()=>record};
       window.Timer={formatDuration:dur,formatHuman:dur};
       window.Sanitiser={escapeHtml:esc};
       // Use the source project's original result renderer, preserving its
-      // original scorecards, tables, charts, and history layout.
+      // original scorecards, tables, and charts.
       const js=document.createElement('script');js.src='js/result-original-adapted.js?v=4';
       js.onerror=()=>status('Could not load the original result renderer. Verify the GitHub Pages upload includes js/result-original-adapted.js.');
       document.body.appendChild(js);

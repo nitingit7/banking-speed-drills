@@ -73,15 +73,15 @@
     setText('.mockCandId','Private Practice');
     if($('exam_name_h1'))$('exam_name_h1').textContent='BANKING SPEED DRILL';
   }
-  function sectionInfo(){return state?.active_section||{subject:'Speed Drill',start:0,count:state?.total||0,seconds_per_question:state?.seconds_per_question||45,deadline_at:state?.overall_deadline_at};}
+  function sectionInfo(){return state?.active_section||{subject:'Speed Drill',start:0,count:state?.total||0,seconds_per_question:state?.seconds_per_question||(state?.mode==='challenge'?30:40),deadline_at:state?.overall_deadline_at};}
   function sectionPlanSeconds(){
     if(pending?.section_seconds&&Array.isArray(pending.subjects))return pending.subjects.reduce((n,sub)=>n+(pending.quotas?.[sub]||pending.count)*Number(pending.section_seconds[sub]||pending.seconds),0);
     if(state?.sections?.length)return state.sections.reduce((n,part)=>n+Number(part.duration_seconds||0),0);
-    return (pending?.count||state?.total||0)*(pending?.seconds||state?.seconds_per_question||45);
+    return (pending?.count||state?.total||0)*(pending?.seconds||state?.seconds_per_question||(state?.mode==='challenge'?30:40));
   }
   function durationText(sec){const m=Math.floor(sec/60),rem=sec%60;return m+' min'+(rem?' '+rem+' sec':'')}
   function setDuration(){
-    const count=pending?.count||state?.total||0,per=pending?.seconds||state?.seconds_per_question||45;
+    const count=pending?.count||state?.total||0,per=pending?.seconds||state?.seconds_per_question||(state?.mode==='challenge'?30:40);
     setText('.completeDuration',durationText(sectionPlanSeconds()));
     const text=$('instructions-body');if(!text)return;
     const first=text.querySelector('ol li');

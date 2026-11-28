@@ -18,7 +18,7 @@ WHAT CHANGED
    section lock upon manual submission or timeout. Previously started v5 attempts retain
    their former single-deadline behavior.
 4. Home: separate question allocation and independently adjustable seconds/question for
-   each selected subject. Normal defaults to 45 sec/question, Challenge to 30 sec/question;
+   each selected subject. Normal defaults to 40 sec/question, Challenge to 30 sec/question;
    selected mode is shared by every section.
 5. Practice time: new v6 tests count foreground practice through authenticated server
    heartbeats (~8 seconds). This excludes theoretical exam duration and idle time.
@@ -57,7 +57,7 @@ images/, fonts/ paths. Because this is a COMPLETE frontend, it can replace
 old site files. index.html must be at repository root.
 
 Then hard refresh (Ctrl+Shift+R). Verify these browser pages:
-  index.html       — select Simplification, Normal, 5 Q -> 3m45s
+  index.html       — select Simplification, Normal, 5 Q -> 3m20s
   drill.html       — instructions, fullscreen-ready, navigation and section lock
   result.html      — result score untouched
   drill.html?mode=analyse&attempt=<completed-attempt-id> — palette colors

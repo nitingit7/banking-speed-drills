@@ -27,7 +27,7 @@
     const fields=$('subject-count-fields');fields.replaceChildren();if(multi){for(const s of subs){if(!Number.isFinite(allocation[s]))allocation[s]=10;const row=document.createElement('div');row.className='allocation-row';const details=document.createElement('div');details.className='allocation-subject';const name=document.createElement('strong');name.textContent=s;const hint=document.createElement('span');hint.className='hint';hint.textContent=availableFor(s)+' available';details.append(name,hint);const controls=document.createElement('div');controls.className='allocation-controls';const v=allocation[s];const select=makeSelect(v,newValue=>{allocationCustom[s]=newValue==='custom';if(newValue!=='custom')allocation[s]=Number(newValue);drawCounts()});if(allocationCustom[s])select.value='custom';select.setAttribute('aria-label',s+' preset question count');const custom=document.createElement('input');custom.type='number';custom.min='1';custom.max='100';custom.step='1';custom.value=String(v);custom.setAttribute('aria-label',s+' custom question count');custom.hidden=select.value!=='custom';custom.oninput=()=>{allocation[s]=Number(custom.value);updateAllocationTotal()};controls.append(select,custom);row.append(details,controls);fields.append(row)}}updateAllocationTotal()}
   function updateAllocationTotal(){const subs=selectedSubjects();let total=0;for(const s of subs)total+=Number(allocation[s]||0);$('allocated-total').textContent=total+' / 100';$('allocated-total').classList.toggle('invalid',total>100||total<1);$('allocation-hint').textContent=subs.length+' subjects · '+subs.map(s=>s+': '+(allocation[s]||0)).join(' · ')}
   function prettySeconds(sec){const m=Math.floor(sec/60),r=sec%60;return m?m+'m '+(r?r+'s':''):r+'s'}
-  function currentPer(){return document.querySelector('input[name="mode"]:checked')?.value==='challenge'?30:45}
+  function currentPer(){return document.querySelector('input[name="mode"]:checked')?.value==='challenge'?30:40}
   function countForSubject(subject){
     const subs=selectedSubjects();
     if(subs.length>1)return Number(allocation[subject]||0);
@@ -45,7 +45,7 @@
     if(!Number.isInteger(count)||count<1||count>100){startWarning('Select a total of 1–100 whole-number questions.');return null}
     const mode=document.querySelector('input[name="mode"]:checked')?.value||'normal';
     const secondsPerSubject=Object.fromEntries(subs.map(subject=>[subject,currentPer()]));
-    return{count,mode,seconds:mode==='challenge'?30:45,keys:[...selected],quotas,subjects:subs,section_seconds:secondsPerSubject};}
+    return{count,mode,seconds:mode==='challenge'?30:40,keys:[...selected],quotas,subjects:subs,section_seconds:secondsPerSubject};}
   function unlockVisible(v){$('unlock-modal').classList.toggle('open',v)}
   function loginGate(){
     const loggedIn=!!DrillAPI.auth();
