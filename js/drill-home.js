@@ -2,7 +2,7 @@
 (function(){'use strict';
   const $=id=>document.getElementById(id);
   const SYLLABUS={
-    'Quantitative Aptitude':['Number System','Simplification','Approximation','Decimal Fractions','Time and Work','Age Problems','Percentage','Permutation and Combination','HCF and LCM','Simple Interest','Time and Distance','Ratio and Proportion','Probability','Profit and Loss','Compound Interest','Average','Partnership','Data Interpretation','Data Sufficiency','Quadratic Equations'],
+    'Quantitative Aptitude':['Number System','Simplification','Approximation','Number Series','Decimal Fractions','Time and Work','Age Problems','Percentage','Permutation and Combination','HCF and LCM','Simple Interest','Time and Distance','Ratio and Proportion','Probability','Profit and Loss','Compound Interest','Average','Partnership','Data Interpretation','Data Sufficiency','Quadratic Equations'],
     'Reasoning Ability':['Box-Based Puzzle','Floor or Floor-flat-based Puzzles','Day/ Month/ Year-Based Puzzle','Comparison/Categorised/ Uncertain Puzzles Miscellaneous','Ranking and Time','Word Formation','Alphabet/ Number/ Symbol Series','Inequality','Syllogism','Order & Ranking','Coding-Decoding','Direction-sense','Blood-Relation','Circular/ Triangular/ Rectangular/ Square Seating Arrangement','Linear Seating Arrangement Puzzles'],
     'English Language':['Reading Comprehension','Cloze Test','Para Jumbles / Sentence Rearrangement / Paragraph Completion','Error Spotting / Sentence Correction','Fill in the Blanks & Vocabulary / Multiple Meaning']
   };
